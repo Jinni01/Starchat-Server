@@ -35,7 +35,7 @@ router.post("/login", isAuthenticated, passport.authenticate('local', {
 });
 
 router.get("/login_fail", (req, res) => {
-    return res.status(204);
+    return res.sendStatus(204);
 });
 
 router.get("/logout", (req, res) => {
@@ -53,6 +53,8 @@ router.post("/signup", upload.single("userImage"), (req, res) => {
 
     const {
         userNickname,
+        userID,
+        userPW,
         userSex,
         userAge,
         userRegion,
@@ -63,27 +65,29 @@ router.post("/signup", upload.single("userImage"), (req, res) => {
     const userProfileimage = req.file.filename;
     const userSigndate = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
 
-    let userCode = undefined;
+    let userPW_incrypted = undefined;
     let userSalt = undefined;
 
     crypto.randomBytes(64, (err, buf) => {
         userSalt = buf.toString("base64");
         console.log("userSalt => " + userSalt);
 
-        crypto.pbkdf2(userNickname, userSalt, 52813, 64, "sha512", (err, key) => {
-            userCode = key.toString("base64");
-            console.log("userCode => " + userCode);
+        crypto.pbkdf2(userPW, userSalt, 52813, 64, "sha512", (err, key) => {
+            userPW_incrypted = key.toString("base64");
+            console.log("userPW_incrypted => " + userPW_incrypted);
 
             connection.query(
-                "select nickname from user where nickname=?",
+                "select * from user where nickname=?",
                 [userNickname], (err, result, fields) => {
                     if (result && result.length != 0) {
                         return res.status(400).send("이미 가입되어 있는 회원입니다.");
                     }
                     connection.query(
-                        "insert into user values(?,?,?,?,?,?,0,?,?)",
+                        "insert into user values(?,?,?,?,?,?,?,?,0,?,?)",
                         [
                             userNickname,
+                            userID,
+                            userPW_incrypted,
                             userSex,
                             userAge,
                             userRegion,
@@ -100,9 +104,10 @@ router.post("/signup", upload.single("userImage"), (req, res) => {
 
                             if (result && result.length != 0) {
                                 console.log(result);
-                                return res.status(201).send("회원 가입 성공 / 유저 코드 => " + userCode);
+                                return res.status(201).send("회원 가입 성공");
+                                //return res.status(201).send("회원 가입 성공");
                             } else {
-                                return res.status(204)
+                                return res.sendStatus(204);
                             }
                         }
                     );
@@ -129,7 +134,7 @@ router.delete("/leave", (req, res) => {
                 return res.status(500).send("삭제 실패");
             }
             if(!(result && result.length !=0)){
-                return res.status(204);
+                return res.sendStatus(204);
             } else{
                 return res.status(200).send("삭제 성공");
             }
