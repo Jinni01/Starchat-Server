@@ -77,7 +77,7 @@ router.post("/signup", upload.single("userImage"), (req, res) => {
             console.log("userPW_incrypted => " + userPW_incrypted);
 
             connection.query(
-                "select * from user where nickname=?",
+                "select * from user where id=?",
                 [userNickname], (err, result, fields) => {
                     if (result && result.length != 0) {
                         return res.status(400).send("이미 가입되어 있는 회원입니다.");
