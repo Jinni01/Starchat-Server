@@ -40,7 +40,11 @@
 
     >>> Success
     
-        return HTTP 200, success : true, message : "유저 정보 삭제 성공"               
+        return HTTP 200, success : true, message : "유저 정보 삭제 성공"
+        
+    >>> Fail
+    
+        <code>return HTTP 204</code> OR <code>return HTTP 404, success : false, message : "유저 정보를 찾을 수 없습니다"</code>
 
 #### 회원탈퇴
 > /user/leave
