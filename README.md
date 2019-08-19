@@ -42,7 +42,6 @@
     >>> Success
     
         return HTTP 200, User Scheme
-       
         {
             "nickname": "nickname" (String),
             "id": "id" (String),
