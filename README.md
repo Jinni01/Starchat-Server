@@ -25,7 +25,7 @@
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴)
 
 #### 회원가입 
-> <code>POST</code> /user/signup
+> /user/signup
 >> Requiring Params
 
     userNickname : nickname (String)
