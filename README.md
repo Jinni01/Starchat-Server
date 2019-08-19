@@ -25,7 +25,7 @@
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴)
 
 #### 회원가입 
-* 요청시 body->form-data 로 보내야함
+* 요청시 <b>body->form-data</b> 로 보내야함
 > <code>POST</code> /user/signup
 >> Requiring Params
 
