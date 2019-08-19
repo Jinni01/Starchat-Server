@@ -26,3 +26,4 @@
 
 > <code>POST</code> /user/signup
 >> Requiring Params
+    username
