@@ -1,6 +1,5 @@
 # RanChat-Server
 * POST 방식으로 모든 요청을 처리함
-* 로그인은 세션 방식을 사용
 * 통신 링크 : 15.164.126.18
 
 ## DATABASE Scheme
@@ -23,6 +22,7 @@
 ## API Document
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴)
+* 로그인 방식 : 세션
 
 #### 회원가입 
 > /user/signup
