@@ -1,5 +1,6 @@
 # RanChat-Server
 * REST 방식으로 모든 요청을 처리함
+* 로그인은 세션 방식을 사용
 * 통신 링크 : 15.164.126.18
 
 ## DATABASE Scheme
@@ -19,3 +20,6 @@
 | signdate | varchar(50) | NO | PRI | 회원 가입 일시 |
 | salt | varchar(50) | NO | PRI | 회원 가입시 내부적으로 저장되는 암호화 키 |
 
+## API Document
+
+### Auth(회원가입, 로그인, 로그아웃, 탈퇴)
