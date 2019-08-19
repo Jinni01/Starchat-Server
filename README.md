@@ -34,8 +34,8 @@
 > /user/login
 >> Requiring Params 
 
-#### 로그아웃
-> /user/logout
+    이거도
+
 >> Return Value
 
     >>> Success
@@ -51,6 +51,18 @@
             "introduce": String,
             "star": int UNSIGNED
         }
+
+#### 로그아웃
+> /user/logout
+>> Return Value
+
+    >>> Success
+    
+        return HTTP 200, success : true, message : "로그아웃 성공"
+        
+    >>> Fail
+    
+        return HTTP 400, success : false, message : "로그인되어 있지 않습니다"
     
         
 
