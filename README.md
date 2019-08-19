@@ -33,6 +33,18 @@
 #### 로그인
 > /user/login
 >> Requiring Params 
+
+#### 로그아웃
+> /user/logout
+>> Return Value
+
+    >>> Success
+    
+        return HTTP 200, success : true, message : "유저 정보 삭제 성공"               
+
+#### 회원탈퇴
+> /user/leave
+>> Requiring Params 
     
     
     
