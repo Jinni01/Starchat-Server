@@ -34,23 +34,36 @@
 > /user/login
 >> Requiring Params 
 
-    이거도
+    "userID" : "id" (String),
+    "userPW" : "pw" (String)
 
 >> Return Value
 
     >>> Success
     
         return HTTP 200, User Scheme
+       
         {
-            "nickname": String,
-            "id": String,
-            "sex": String,
-            "age": tinyint,
-            "region": String,
-            "profile": String,
-            "introduce": String,
-            "star": int UNSIGNED
+            "nickname": "nickname" (String),
+            "id": "id" (String),
+            "sex": "sex" (String),
+            "age": "age" (tinyint),
+            "region": "region" (String),
+            "profile": "profile" (String),
+            "introduce": "introduce" (String),
+            "star": "star" (int UNSIGNED) 
         }
+        
+     >>> Fail
+     
+        FailureRedirect "/user/login-fail
+
+> /user/login-fail
+>> Return Value
+
+    return HTTP 401, success : false, message : "존재하지 않는 ID 입니다"
+    return HTTP 401, success : false, message : "잘못된 비밀번호입니다"
+        
 
 #### 로그아웃
 > /user/logout
