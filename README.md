@@ -24,11 +24,11 @@
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴)
 
-#### 회원가입
+#### 회원가입 
+* 요청시 body->form-data 로 보내야함
 > <code>POST</code> /user/signup
 >> Requiring Params
 
-    // 
     userNickname : nickname (String)
     userID : id (String)
     userPW : pw (String)
