@@ -11,7 +11,7 @@
 | id | varchar(30) | NO |  | ID |
 | pw | varchar(30) | NO |  | PW |
 | sex | varchar(10) | NO |  | 성별 |
-| age | tinyint(4) | NO |  | 나이 |
+| age | tinyint(4) | NO |  | 나이 (0~255) |
 | region | varchar(50) | NO |  | 지역 |
 | profile | varchar(50) | YES |  | 프로필 이미지 서버 저장 경로 |
 | introduce | varchar(50) | YES |  | 소개 |
