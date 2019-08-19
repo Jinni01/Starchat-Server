@@ -1,5 +1,5 @@
 # RanChat-Server
-* POST 방식으로 모든 요청을 처리함
+* <code>POST</code> 방식으로 모든 요청을 처리함
 * 통신 링크 : 15.164.126.18
 
 ## DATABASE Scheme
@@ -28,14 +28,11 @@
 > /user/signup
 >> Requiring Params
 
-    userNickname : nickname (String)
-    userID : id (String)
-    userPW : pw (String)
-    userSex : sex (String)
-    userAge : age (tinyint) //0~255
-    userRegion : region (String)
-    userIntroduce : introduce (String)
-    userImage : Image File (Data)
+    스토리보드 나와야 편집함
+    
+#### 로그인
+> /user/login
+>> Requiring Params 
     
     
     
