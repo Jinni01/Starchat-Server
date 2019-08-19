@@ -67,6 +67,10 @@
 
 #### 로그아웃
 > /user/logout
+>> Requiring Params
+
+    NO Param
+    
 >> Return Value
 
     >>> Success
@@ -81,6 +85,10 @@
 
 #### 회원탈퇴
 > /user/leave
+>> Requiring Params
+
+    NO Param
+    
 >> Return Value
 
     >>> Success
