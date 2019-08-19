@@ -4,6 +4,8 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const passportConfig = require("./passport");
+const flash = require("connect-flash");
+const bodyParser = require("body-parser");
 
 //*Region Router Components
 const userRouter = require("./user/user");
@@ -15,11 +17,16 @@ app.set("port", process.env.PORT || 80);
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(flash());
 
 app.use(session({ secret: '213jkdjsk21', resave: true, saveUninitialized: false })); 
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 passportConfig(); 
+
+app.use(bodyParser.urlencoded({
+    extended : true
+}));
 
 //*Region Static Router 
 app.use("profileImage", express.static(path.join(__dirname, "user/profileImage")));

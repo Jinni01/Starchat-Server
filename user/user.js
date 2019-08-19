@@ -8,8 +8,11 @@ const passport = require("passport");
 const connection = require("../db/db_connection");
 
 const isAuthenticated = (req, res, next) => {
-    if(req.isAuthenticated()){
-        return res.status(400).send("이미 로그인되어 있습니다.");
+    if (req.isAuthenticated()) {
+        return res.status(400).json({
+            success: false,
+            message: "이미 로그인되어 있습니다"
+        });
     }
     next();
 };
@@ -29,22 +32,32 @@ const upload = multer({
 
 //login router
 router.post("/login", isAuthenticated, passport.authenticate('local', {
-    failureRedirect: "/user/login_fail"
+    failureRedirect: "/user/login-fail",
+    failureFlash: true
 }), (req, res) => {
     res.status(200).json(req.user);
 });
 
-router.get("/login_fail", (req, res) => {
-    return res.sendStatus(204);
+router.get("/login-fail", (req, res) => {
+    return res.status(401).json({
+        success: false,
+        message: req.flash("error")[0]
+    });
 });
 
-router.get("/logout", (req, res) => {
-    if(!req.user){
-        return res.status(400).send("로그인되어 있지 않습니다.");
+router.post("/logout", (req, res) => {
+    if (!req.user) {
+        return res.status(400).json({
+            success: false,
+            message: "로그인되어 있지 않습니다"
+        });
     }
     req.logout();
     req.session.destroy(() => {
-        return res.status(200).send("로그아웃");
+        return res.status(200).json({
+            success: true,
+            message: "로그아웃 성공"
+        });
     });
 });
 
@@ -77,68 +90,95 @@ router.post("/signup", upload.single("userImage"), (req, res) => {
             console.log("userPW_incrypted => " + userPW_incrypted);
 
             connection.query(
-                "select * from user where id=?",
+                "select nickname from user where nickname=?",
                 [userNickname], (err, result, fields) => {
                     if (result && result.length != 0) {
-                        return res.status(400).send("이미 가입되어 있는 회원입니다.");
+                        return res.status(400).json({
+                            success: false,
+                            message: "중복된 닉네임을 사용하였습니다"
+                        });
                     }
                     connection.query(
-                        "insert into user values(?,?,?,?,?,?,?,?,0,?,?)",
-                        [
-                            userNickname,
-                            userID,
-                            userPW_incrypted,
-                            userSex,
-                            userAge,
-                            userRegion,
-                            userProfileimage,
-                            userIntroduce,
-                            userSigndate,
-                            userSalt
-                        ],
-                        (err, result, fields) => {
-                            if (err) {
-                                console.log(err);
-                                return res.status(400).send("잘못된 값을 삽입하였습니다.");
-                            }
-
+                        "select id from user where id=?",
+                        [userID], (err, result, fields) => {
                             if (result && result.length != 0) {
-                                console.log(result);
-                                return res.status(201).send("회원 가입 성공");
-                                //return res.status(201).send("회원 가입 성공");
-                            } else {
-                                return res.sendStatus(204);
+                                return res.status(400).json({
+                                    success: false,
+                                    message: "중복된 ID를 사용하였습니다"
+                                });
                             }
+                            connection.query(
+                                "insert into user values(?,?,?,?,?,?,?,?,0,?,?)",
+                                [
+                                    userNickname,
+                                    userID,
+                                    userPW_incrypted,
+                                    userSex,
+                                    userAge,
+                                    userRegion,
+                                    userProfileimage,
+                                    userIntroduce,
+                                    userSigndate,
+                                    userSalt
+                                ],
+                                (err, result, fields) => {
+                                    if (err) {
+                                        console.log(err);
+                                        return res.status(500).json({
+                                            success: false,
+                                            message: "DB에러"
+                                        });
+                                    }
+                                    if (result && result.length != 0) {
+                                        console.log(result);
+                                        return res.status(201).json({
+                                            success: true,
+                                            message: "회원 가입 성공"
+                                        });
+                                    } else {
+                                        return res.sendStatus(204);
+                                    }
+                                }
+                            );
                         }
-                    );
+                    )
                 }
             );
         });
     });
 });
 
-router.delete("/leave", (req, res) => {
+router.post("/leave", (req, res) => {
 
-    if(!req.user){
-        return res.status(400).send("잘못된 접근입니다.");
+    if (!req.user) {
+        return res.status(400).json({
+            success: false,
+            message: "잘못된 접근입니다"
+        })
     }
 
-    const userName = req.user.nickname;
-    console.log(userName);
+    const userID = req.user.id;
+    console.log(userID);
 
     req.logout();
     req.session.destroy(() => {
-        connection.query("delete from user where nickname = ?", [userName], (err, result, fields) => {
-            if(err){
+        connection.query("delete from user where nickname = ?", [userID], (err, result, fields) => {
+            if (err) {
                 console.log(err);
-                return res.status(500).send("삭제 실패");
+                return res.status(500).json({
+                    success: false,
+                    message: "DB에러"
+                });
             }
-            if(!(result && result.length !=0)){
+            if (result && result.length != 0) {
+                return res.status(200).json({
+                    success: true,
+                    message: "유저 정보 삭제 성공"
+                });
+            } else {
                 return res.sendStatus(204);
-            } else{
-                return res.status(200).send("삭제 성공");
             }
-        }); 
+        });
     });
 });
 
