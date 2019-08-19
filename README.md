@@ -4,6 +4,6 @@
 
 ## DATABASE Scheme
 > User Scheme
-| Field | Type | Nullable | Key |
+  | Field | Type | Nullable | Key |
 
   
