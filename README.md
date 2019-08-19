@@ -26,4 +26,8 @@
 
 > <code>POST</code> /user/signup
 >> Requiring Params
-    username
+
+    nickname : UserNickname (String)
+    id : UserID (String)
+    
+    
