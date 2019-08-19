@@ -56,7 +56,7 @@
         
      >>> Fail
      
-        FailureRedirect "/user/login-fail
+        FailureRedirect "/user/login-fail"
 
 > /user/login-fail
 >> Return Value
