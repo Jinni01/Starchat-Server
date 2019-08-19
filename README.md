@@ -1,5 +1,5 @@
 # RanChat-Server
-* REST 방식으로 모든 요청을 처리함
+* POST 방식으로 모든 요청을 처리함
 * 로그인은 세션 방식을 사용
 * 통신 링크 : 15.164.126.18
 
@@ -25,7 +25,6 @@
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴)
 
 #### 회원가입 
-* 요청시 <b>body->form-data</b> 로 보내야함
 > <code>POST</code> /user/signup
 >> Requiring Params
 
