@@ -9,16 +9,16 @@
 | Field | Type | Nullable | Key | Extra |
 | ------ | ------ | ------ | ------ | ------ |
 | nickname | varchar(50) | NO | PRI | 닉네임 |
-| id | varchar(50) | NO |  | ID |
-| pw | varchar(50) | NO |  | PW |
-| sex | varchar(50) | NO |  | 성별 |
-| age | varchar(50) | NO |  | 나이 |
+| id | varchar(30) | NO |  | ID |
+| pw | varchar(30) | NO |  | PW |
+| sex | varchar(10) | NO |  | 성별 |
+| age | tinyint(4) | NO |  | 나이 |
 | region | varchar(50) | NO |  | 지역 |
 | profile | varchar(50) | YES |  | 프로필 이미지 서버 저장 경로 |
 | introduce | varchar(50) | YES |  | 소개 |
-| star | varchar(50) | NO |  | 소유한 별 개수 |
-| signdate | varchar(50) | NO |  | 회원 가입 일시 |
-| salt | varchar(50) | NO |  | 회원 가입시 내부적으로 저장되는 암호화 키 |
+| star | int(10) UNSIGNED | NO |  | 소유한 별 개수 |
+| signdate | datetime | NO |  | 회원 가입 일시 |
+| salt | varchar(100) | NO |  | 회원 가입시 내부적으로 저장되는 암호화 키 |
 
 ## API Document
 
@@ -27,7 +27,17 @@
 > <code>POST</code> /user/signup
 >> Requiring Params
 
-    nickname : UserNickname (String)
-    id : UserID (String)
+    userNickname : nickname (String)
+    userID : id (String)
+    userPW : pw (String)
+    userSex : sex (String)
+    userAge : age (tinyint) //0~255
+    userRegion : region (String)
+    userIntroduce : introduce (String)
+    userImage : Image File (Data)
+    
+    
+    
+    
     
     
