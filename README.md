@@ -40,6 +40,18 @@
 
     >>> Success
     
+        return HTTP 200, User Scheme
+        {
+            "nickname": String,
+            "id": String,
+            "sex": String,
+            "age": tinyint,
+            "region": String,
+            "profile": String,
+            "introduce": String,
+            "star": int UNSIGNED
+        }
+    
         
 
 #### 회원탈퇴
