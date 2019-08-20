@@ -1,5 +1,6 @@
 # StarChat-Server
-* <code>POST</code> 방식으로 모든 요청을 처리함
+* <code>POST</code> <code>x-www-form-urlencoded</code> 방식으로 대부분의 요청을 처리함
+* <code>/user/signup</code>에선 <code>multipart/form-data</code> 로 보내야함
 * 통신 링크 : 15.164.126.18
 
 ## DATABASE TABLE 
