@@ -23,7 +23,9 @@ module.exports = () => {
       console.log(result);
       if (err) {
         console.log(err);
-        return done(false, null);
+        return done(false, null, {
+          message: "DB에러"
+        });
       } else {
         if (result.length === 0) {
           console.log("passport-login error => 존재하지 않는 ID");
