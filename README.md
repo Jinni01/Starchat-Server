@@ -30,7 +30,16 @@
 > /user/signup
 >> Requiring Params
 
-    아
+    "userEmail" : "email" (String),
+    "userID" : "id" (String),
+    "userPW" : "pw" (String),
+    "userNickname" : "nickname" (String),
+    "userSex" : "sex" (String),
+    "userAge" : "age" (tinyint),
+    "userRegion" : "region" (String),
+    "userIntroduce" : "introduce" (String),
+    "userProfile" : "profile" (file)
+    
     
 #### 로그인
 > /user/login
@@ -45,13 +54,14 @@
     
         return HTTP 200, User Scheme
         {
-            "nickname": "nickname" (String),
+            "email" : "email" (String)
             "id": "id" (String),
+            "nickname": "nickname" (String),
             "sex": "sex" (String),
             "age": "age" (tinyint),
             "region": "region" (String),
-            "profile": "profile" (String),
             "introduce": "introduce" (String),
+            "profile": "profile" (String),
             "star": "star" (int UNSIGNED) 
         }
         
@@ -81,7 +91,6 @@
     >>> Fail
     
         return HTTP 400, success : false, message : "로그인되어 있지 않습니다"
-    
         
 
 #### 회원탈퇴
