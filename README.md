@@ -7,14 +7,15 @@
 
 | Field | Type | Nullable | Key | Extra |
 | ------ | ------ | ------ | ------ | ------ |
-| nickname | varchar(50) | NO | PRI | 닉네임 |
+| email | varchar(30) | NO | PRI | 이메일 |
 | id | varchar(30) | NO |  | ID |
-| pw | varchar(30) | NO |  | PW |
+| pw | varchar(300) | NO |  | 암호화된 PW | 
+| nickname | varchar(50) | NO |  | 닉네임 |
 | sex | varchar(10) | NO |  | 성별 |
 | age | tinyint(4) | NO |  | 나이 (0~255) |
 | region | varchar(50) | NO |  | 지역 |
-| profile | varchar(50) | YES |  | 프로필 이미지 서버 저장 경로 |
-| introduce | varchar(50) | YES |  | 소개 |
+| introduce | varchar(200) | YES |  | 소개 |
+| profile | varchar(100) | YES |  | 프로필 이미지 서버 저장 경로 |
 | star | int(10) UNSIGNED | NO |  | 소유한 별 개수 |
 | signdate | datetime | NO |  | 회원 가입 일시 |
 | salt | varchar(100) | NO |  | 회원 가입시 내부적으로 저장되는 암호화 키 |
