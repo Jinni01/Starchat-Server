@@ -25,9 +25,12 @@
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴)
 * 로그인 방식 : 세션
 
-#### 회원가입 
+#### Email/ID 중복체크
+
+
+#### 유저 정보 등록
 <code>multipart/form-data</code> 방식으로 요청
-> /user/signup
+> /user/create-profile
 >> Requiring Params
 
     "userEmail" : "email" (String),
@@ -40,6 +43,16 @@
     "userIntroduce" : "introduce" (String),
     "userProfile" : "profile" (file)
     
+>> Return Value
+
+    >>> Success
+    
+        return HTTP 201, { success : true, message : "회원 가입 성공" }
+        
+    >>> Fail
+    
+        return HTTP 204
+        return HTTP 500, { success : false, message : "DB에러" }
     
 #### 로그인
 > /user/login
@@ -72,8 +85,8 @@
 > /user/login-fail
 >> Return Value
 
-    return HTTP 401, success : false, message : "존재하지 않는 ID 입니다"
-    return HTTP 401, success : false, message : "잘못된 비밀번호입니다"
+    return HTTP 401, { success : false, message : "존재하지 않는 ID 입니다" }
+    return HTTP 401, { success : false, message : "잘못된 비밀번호입니다" }
         
 
 #### 로그아웃
@@ -86,11 +99,11 @@
 
     >>> Success
     
-        return HTTP 200, success : true, message : "로그아웃 성공"
+        { return HTTP 200, success : true, message : "로그아웃 성공" }
         
     >>> Fail
     
-        return HTTP 400, success : false, message : "로그인되어 있지 않습니다"
+        { return HTTP 400, success : false, message : "로그인되어 있지 않습니다" }
         
 
 #### 회원탈퇴
@@ -103,12 +116,12 @@
 
     >>> Success
     
-        return HTTP 200, success : true, message : "유저 정보 삭제 성공"
+        return HTTP 200, { success : true, message : "유저 정보 삭제 성공" }
         
     >>> Fail
     
         return HTTP 204
-        return HTTP 500, success : false, message : "DB에러"
+        return HTTP 500, { success : false, message : "DB에러" }
     
     
     
