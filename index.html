@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <title>StarChat Socket Test</title>
+</head>
+
+<body>
+
+    <input type="text" id="idbox" />
+    <button id="onlinebutton">온라인 상태로 만들기</button>
+
+    <button id="reload">유저 정보 불러오기</button><br>
+
+    <table id="userlist" border="1px solid black">
+        
+    </table>
+
+    <script type="text/javascript">
+        var socket = io.connect('http://localhost');
+
+        $("#onlinebutton").click(() => {
+            socket.emit("online", {
+                email: $("#idbox").val()
+            });
+        });
+
+        $("#reload").click(() => {
+            socket.emit("reqOnlineUser");
+        });
+
+        socket.on("resOnlineUser", (data) => {
+            console.log(data);
+            for(var i=0; i < data.length; ++i){
+                $("#userlist").append(data[i]);
+
+                $("#userlist").append("<tr>"
+                     + "<td>" + data[i].nickname + "</td>"
+                     + "<td>" + data[i].sex + "</td>"
+                     + "<td>" + data[i].age + "</td>"
+                     + "<td>" + data[i].region + "</td>"
+                     + "<td>" + data[i].introduce + "</td>"
+                     + "<td>" + data[i].profile + "</td>"
+                      + "</tr>");
+            }
+        });
+    </script>
+</body>

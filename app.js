@@ -40,12 +40,17 @@ app.use("profileImage", express.static(path.join(__dirname, "user/profileImage")
 //*Region Router
 app.use("/user", userRouter);
 //*EndRegion
+
 /*
 app.use((req, res, next) => {
     
     next();
 }); 
 */ // Custom Middleware
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
 app.use((req, res, next) => {
     const err = new Error("Not Found");
     err.status = 404;
