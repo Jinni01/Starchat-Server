@@ -5,7 +5,7 @@ const dateFormat = require("dateformat");
 const crypto = require("crypto");
 const passport = require("passport");
 
-const connection = require("../db/db_connection");
+const connection = require("../../db/db_connection");
 
 const isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -20,7 +20,7 @@ const isAuthenticated = (req, res, next) => {
 const upload = multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => {
-            cb(null, "user/profileImage/");
+            cb(null, "routes/user/profileImage/");
         },
         filename: (req, file, cb) => {
             const ext = path.extname(file.originalname);

@@ -1,4 +1,7 @@
 const express = require("express");
+const http = require("http");
+const socket = require("socket.io");
+const socketEvents = require("./socket");
 const morgan = require("morgan"); //REST 로깅
 const path = require("path");
 const session = require("express-session");
@@ -8,27 +11,27 @@ const flash = require("connect-flash");
 const bodyParser = require("body-parser");
 
 //*Region Router Components
-const userRouter = require("./user/user");
+const userRouter = require("./routes/user/user");
 //*EndRegion
 
 const app = express();
+const server = http.createServer(app);
+const io = socket(server);
+socketEvents(io);
 
 app.set("port", process.env.PORT || 80);
-
 app.use(morgan("dev"));
 
 app.use(bodyParser.json());
-
 app.use(bodyParser.urlencoded({
     extended : true
 }));
 
+app.use(flash());
 app.use(session({ secret: '213jkdjsk21', resave: true, saveUninitialized: false })); 
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 passportConfig();
-
-app.use(flash());
 
 //*Region Static Router 
 app.use("profileImage", express.static(path.join(__dirname, "user/profileImage")));
@@ -37,12 +40,12 @@ app.use("profileImage", express.static(path.join(__dirname, "user/profileImage")
 //*Region Router
 app.use("/user", userRouter);
 //*EndRegion
-
+/*
 app.use((req, res, next) => {
     
     next();
 }); 
-
+*/ // Custom Middleware
 app.use((req, res, next) => {
     const err = new Error("Not Found");
     err.status = 404;
@@ -54,6 +57,6 @@ app.use((err, req, res, next) => {
     res.status(500).send("서버 에러");
 });
 
-app.listen(app.get("port"), ()=> {
-    console.log(app.get("port"), "번 포트에서 대기 중");
+server.listen(app.get("port"), ()=> {
+    console.log(app.get("port"), "번 포트 열림");
 });
