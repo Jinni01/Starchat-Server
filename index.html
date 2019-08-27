@@ -9,42 +9,100 @@
 
 <body>
 
-    <input type="text" id="idbox" />
+    <input type="text" id="onlinebox" />
     <button id="onlinebutton">온라인 상태로 만들기</button>
 
     <button id="reload">유저 정보 불러오기</button><br>
 
     <table id="userlist" border="1px solid black">
-        
     </table>
+
+    <input type="text" id="invitebox" />
+    <button id="invite">채팅 초대하기</button><br>
+
+    <input type="text" id="chatbox" />
+    <button id="send">전송</button><br>
+
+    <span id="chatlog"></span>
 
     <script type="text/javascript">
         var socket = io.connect('http://localhost');
+        var room_id;
+        var chat_name;
 
         $("#onlinebutton").click(() => {
-            socket.emit("online", {
-                email: $("#idbox").val()
+            socket.emit("reqOnline", {
+                email: $("#onlinebox").val()
             });
+            chat_name = $("#onlinebox").val();
         });
 
         $("#reload").click(() => {
             socket.emit("reqOnlineUser");
         });
 
-        socket.on("resOnlineUser", (data) => {
-            console.log(data);
-            for(var i=0; i < data.length; ++i){
-                $("#userlist").append(data[i]);
+        $("#invite").click(() => {
+            socket.emit("reqInviteUser", {
+                to: $("#invitebox").val(),
+                from: $("#onlinebox").val()
+            });
+        });
 
-                $("#userlist").append("<tr>"
-                     + "<td>" + data[i].nickname + "</td>"
-                     + "<td>" + data[i].sex + "</td>"
-                     + "<td>" + data[i].age + "</td>"
-                     + "<td>" + data[i].region + "</td>"
-                     + "<td>" + data[i].introduce + "</td>"
-                     + "<td>" + data[i].profile + "</td>"
-                      + "</tr>");
+        $("#send").click(() => {
+            socket.emit("sendMessage", {
+                chat: $("#chatbox").val(),
+                roomname: room_id,
+                from: chat_name
+            });
+        });
+
+        socket.on("resOnline", (data) => {
+            alert(data.message);
+        });
+
+        socket.on("resOnlineUser", (userData) => {
+            for (var i = 0; i < userData.length; ++i) {
+                $("#userlist").append("<tr>" +
+                    "<td>" + userData[i].nickname + "</td>" +
+                    "<td>" + userData[i].sex + "</td>" +
+                    "<td>" + userData[i].age + "</td>" +
+                    "<td>" + userData[i].region + "</td>" +
+                    "<td>" + userData[i].introduce + "</td>" +
+                    "<td>" + userData[i].profile + "</td>" +
+                    "</tr>");
             }
+        });
+
+        socket.on("resInviteUser", (data) => {
+            console.log("클라이언트 : 초대 요청 들어옴")
+            console.log(data);
+
+            if (confirm("수락?") == true) {
+                room_id = data.from + "-" + $("#onlinebox").val();
+                socket.emit("reqAcceptInvite", {
+                    sid: data.sid,
+                    roomname: room_id
+                });
+            } else {
+                //초대 거절
+            }
+        });
+
+        socket.on("resAcceptInvite", (data) => {
+            console.log("클라이언트 : 초대 요청 바인딩");
+            console.log(data);
+            room_id = data.roomname
+            socket.emit("joinRoom", {
+                roomname: room_id
+            });
+        });
+
+        socket.on("notice", (data) => {
+            console.log(data.roomname + "방에 입장함");
+        });
+
+        socket.on("receiveMessage", (data) => {
+            $("#chatlog").append("<p>" + data.from + " : " + data.chat + "</p>");
         });
     </script>
 </body>
