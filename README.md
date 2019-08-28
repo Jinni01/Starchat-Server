@@ -141,7 +141,9 @@
         return HTTP 500, { success: false, message: "DB에러" }
     
     
-    
+### Chat (온라인 상태 등록, 채팅 초대/응답, 접속, 종료)
+
+
     
     
     
