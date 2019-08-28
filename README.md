@@ -141,9 +141,27 @@
         return HTTP 500, { success: false, message: "DB에러" }
     
     
-### Chat (온라인 상태 등록, 채팅 초대/응답, 접속, 종료)
+### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 접속, 종료)
+* Socket.io를 통해 이벤트 통신을 하기 때문에 한 동작에 대해 <code>emit</code>, <code>on</code> 이 짝을 이룸
+* 이벤트명은 <code>on</code>|<code>emit</code> eventName 과 같이 표기함
 
+#### 온라인 상태 등록
+> <code>emit</code> reqOnline
+>> Requiring Params
 
+    "email" : "userEmail"
+
+> <code>on</code> resOnline 
+>> Return Value
+
+    >>> Success
     
+        return { success: true, message: "접속 성공" }
+        
+    >>> Fail
     
+        None
+        
+        
+#### 온라인 유저 목록
     
