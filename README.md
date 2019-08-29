@@ -258,6 +258,22 @@
      
 
 #### 초대 거절
+> <code>emit</code> reqRejectInvite
+>> Requiring Params
+
+    "sid": "(resInviteUser의)data.sid",
+
+
+> <code>on</code> resRejectInvite, (data) 
+>> Return Value
+
+    >>> Success
+    
+        return { message: "상대방이 초대를 거부하였습니다" }
+        
+    >>> Fail
+    
+        None
 
 
 #### 접속 
@@ -278,6 +294,7 @@
     >>> Fail
     
         None
+        
         
 #### 채팅
 * 채팅 보내기
@@ -300,3 +317,4 @@
     
         None
         
+
