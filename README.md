@@ -217,7 +217,23 @@
         None
         
         
-* 초대 수락시 클라이언트에서 저장해야 할 값 : <code>String room_id = data.from + "-" + userEmail; </code>
+* 초대 수락시 클라이언트에서 생성해야 할 값 : <code>String room_id = data.from + "-" + userEmail;</code> <code>String sid = data.sid</code>
 
 #### 초대 수락
->
+> <code>emit</code> reqOnline
+>> Requiring Params
+
+    "email" : "userEmail"
+
+> <code>on</code> resOnline, (data) 
+>> Return Value
+
+    >>> Success
+    
+        return { success: true, message: "접속 성공" }
+        
+    >>> Fail
+    
+        None
+        
+        
