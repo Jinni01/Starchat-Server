@@ -143,7 +143,8 @@
     
 ### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 접속, 종료)
 * Socket.io를 통해 이벤트 통신을 하기 때문에 한 동작에 대해 <code>emit</code>, <code>on</code> 이 짝을 이룸
-* 이벤트명은 <code>on</code>|<code>emit</code> eventName 과 같이 표기함
+* 이벤트명은 <code>emit</code>|<code>on</code> eventName 과 같이 표기함
+* on을 통한 반환시 (data) 와 같은 값을 받아줄 변수가 필요함 (<code>ex</code> { success: true } 반환시 data.true 로 접근 )
 
 #### 온라인 상태 등록
 > <code>emit</code> reqOnline
@@ -151,7 +152,7 @@
 
     "email" : "userEmail"
 
-> <code>on</code> resOnline 
+> <code>on</code> resOnline, (data) 
 >> Return Value
 
     >>> Success
@@ -164,4 +165,32 @@
         
         
 #### 온라인 유저 목록
+> <code>emit</code> reqOnlineUser
+>> Requiring Params
+
+    NO Param
+
+> <code>on</code> resOnlineUser, (data) 
+>> Return Value
+
+    >>> Success
     
+        return userList [
+        {
+            "email": "userEmail",
+            "id": "userID",
+            "nickname": "userNickname",
+            "sex": "userSex",
+            "age": "userAge",
+            "region": "userRegion",
+            "introduce": "userIntroduce",
+            "profile": "userProfile" 
+        }
+        {
+            ...
+        }
+        ]
+        
+    >>> Fail
+    
+        None
