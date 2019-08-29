@@ -318,4 +318,21 @@
         None
         
         
-#### 채팅방        
+#### 접속 종료
+> <code>emit</code> reqExitRoom
+>> Requiring Params
+
+    dsd
+
+> <code>on</code> resExitRoom, (data) 
+>> Return Value
+
+    >>> Success
+    
+        return { contents: "receivedContents", from: "from-Nickname" }
+        
+    >>> Fail
+    
+        None
+        
+        
