@@ -37,6 +37,8 @@ passportConfig();
 app.use("profileImage", express.static(path.join(__dirname, "user/profileImage")));
 //*EndRegionpassportUserConfig();
 
+app.use(express.static(path.join(__dirname, "static")));
+
 //*Region Router
 app.use("/user", userRouter);
 //*EndRegion
@@ -48,7 +50,7 @@ app.use((req, res, next) => {
 }); 
 */ // Custom Middleware
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "static/html/index.html"));
 });
 
 app.use((req, res, next) => {

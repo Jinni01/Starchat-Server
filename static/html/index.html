@@ -4,55 +4,73 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+
     <title>StarChat Socket Test</title>
 </head>
 
 <body>
 
-    <input type="text" id="onlinebox" />
-    <button id="onlinebutton">온라인 상태로 만들기</button>
+    <div class="online-menu">
+        <input type="text" class="onlinebox" />
+        <button class="onlinebutton">서버 접속</button>
+        <button class="reload">유저 목록</button>
+    </div>
 
-    <button id="reload">유저 정보 불러오기</button><br>
+    <div class="list-menu">
+        <table class="userlist" border="1px solid black"></table>
+    </div>
 
-    <table id="userlist" border="1px solid black">
-    </table>
+    <div class="chat-menu">
+        <input type="text" class="invitebox" />
+        <button class="invite">초대</button><br>
 
-    <input type="text" id="invitebox" />
-    <button id="invite">채팅 초대하기</button><br>
+        <span class="chatlog"></span>
 
-    <input type="text" id="chatbox" />
-    <button id="send">전송</button><br>
+    </div>
 
-    <span id="chatlog"></span>
+    <div class="float-menu">
+        <input type="text" class="chatbox" />
+        <button class="send">전송</button>
+        <button class="exit">나가기</button>
+    </div>
 
     <script type="text/javascript">
-        var socket = io.connect('http://15.164.126.18/');
+        //var socket = io.connect('http://15.164.126.18/');
+        var socket = io.connect('http://localhost/');
         var room_id;
         var chat_name;
 
-        $("#onlinebutton").click(() => {
+        $(".onlinebutton").click(() => {
             socket.emit("reqOnline", {
-                email: $("#onlinebox").val()
+                email: $(".onlinebox").val()
             });
-            chat_name = $("#onlinebox").val();
+            chat_name = $(".onlinebox").val();
         });
 
-        $("#reload").click(() => {
+        $(".reload").click(() => {
             socket.emit("reqOnlineUser");
         });
 
-        $("#invite").click(() => {
+        $(".invite").click(() => {
             socket.emit("reqInviteUser", {
-                to: $("#invitebox").val(),
-                from: $("#onlinebox").val()
+                to: $(".invitebox").val(),
+                from: $(".onlinebox").val()
             });
         });
 
-        $("#send").click(() => {
+        $(".send").click(() => {
             socket.emit("sendMessage", {
-                chat: $("#chatbox").val(),
+                contents: $(".chatbox").val(),
                 roomname: room_id,
                 from: chat_name
+            });
+        });
+
+        $(".exit").click(() => {
+            socket.emit("reqExitRoom", {
+                roomname: room_id
             });
         });
 
@@ -62,7 +80,7 @@
 
         socket.on("resOnlineUser", (userData) => {
             for (var i = 0; i < userData.length; ++i) {
-                $("#userlist").append("<tr>" +
+                $(".userlist").append("<tr>" +
                     "<td>" + userData[i].nickname + "</td>" +
                     "<td>" + userData[i].sex + "</td>" +
                     "<td>" + userData[i].age + "</td>" +
@@ -78,13 +96,15 @@
             console.log(data);
 
             if (confirm("수락?") == true) {
-                room_id = data.from + "-" + $("#onlinebox").val();
+                room_id = data.from + "-" + $(".onlinebox").val();
                 socket.emit("reqAcceptInvite", {
                     sid: data.sid,
                     roomname: room_id
                 });
             } else {
-                //초대 거절
+                socket.emit("reqRejectInvite", {
+                    sid: data.sid
+                });
             }
         });
 
@@ -97,12 +117,20 @@
             });
         });
 
+        socket.on("resRejectInvite", (data) => {
+            alert(data.message);
+        });
+
         socket.on("notice", (data) => {
-            console.log(data.roomname + "방에 입장함");
+            console.log(data);
         });
 
         socket.on("receiveMessage", (data) => {
-            $("#chatlog").append("<p>" + data.from + " : " + data.chat + "</p>");
+            $(".chatlog").append("<p class=line>" + data.from + " : " + data.contents + "</p>");
+        });
+
+        socket.on("resExitRoom", (data) => {
+            console.log(data.message);
         });
     </script>
 </body>

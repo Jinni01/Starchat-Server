@@ -60,25 +60,39 @@ module.exports = (io) => {
             });
         });
 
+        socket.on("reqRejectInvite", (data) => {
+            io.to(data.sid).emit("resRejectInvite", {
+                message: "상대방이 초대를 거부하였습니다"
+            });
+        });
+
         socket.on("joinRoom", (data) => {
             console.log("소켓 : 입장 요청받음");
             console.log(data);
 
             socket.join(data.roomname);
             io.to(data.roomname).emit("notice", {
-                roomname: data.roomname
+                message: data.roomname + " 채팅방에 입장하셨습니다.",
             });
         });
 
         socket.on("sendMessage", (data) => {
             console.log("소켓 : 채팅 전송 요청받음");
             console.log(data);
+            console.log(io.sockets.adapter.rooms);
             io.to(data.roomname).emit("receiveMessage", {
-                chat: data.chat,
+                contents: data.contents,
                 from: data.from
             });
         });
 
+        socket.on("reqExitRoom", (data) => {
+            socket.leave(data.roomname);
+
+            socket.emit("resExitRoom", {
+                message: "채팅방에서 나왔습니다"
+            });
+        });
 
         socket.on("disconnect", () => {
             console.log("소켓 : 접속 종료");
