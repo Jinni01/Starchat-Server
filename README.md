@@ -141,8 +141,7 @@
         return HTTP 500, { success: false, message: "DB에러" }
     
     
-### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 접속, 종료)
-* Socket.io를 통해 이벤트 통신을 하기 때문에 한 동작에 대해 <code>emit</code>, <code>on</code> 이 짝을 이룸
+### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 접속, 채팅, 종료)
 * 이벤트명은 <code>emit</code>|<code>on</code> eventName 과 같이 표기함
 * on을 통한 반환시 (data) 와 같은 값을 받아줄 변수가 필요함 (<code>ex</code> { success: true } 반환시 data.true 로 접근 )
 
@@ -154,7 +153,7 @@
 > <code>emit</code> reqOnline
 >> Requiring Params
 
-    "email" : "userEmail"
+    "email": "userEmail"
 
 > <code>on</code> resOnline, (data) 
 >> Return Value
@@ -204,19 +203,19 @@
 > <code>emit</code> reqInviteUser
 >> Requiring Params
 
-    "to" : "otherUserEmail",
-    "from" : "userEmail"
+    "to": "otherUserEmail",
+    "from": "userEmail"
 
 > <code>on</code> resInviteUser, (data) 
 >> Return Value
 
     >>> Success
     
-        return { from: "from-Email", sid:"from-SocketID" }
+        return { from: "from-Email", sid: "from-SocketID" }
         
         action
-        - 수락 : reqAcceptInvite
-        - 거절 : None 
+        - 수락: reqAcceptInvite
+        - 거절: None 
         
     >>> Fail
     
@@ -233,8 +232,8 @@
 > <code>emit</code> reqAcceptInvite
 >> Requiring Params
 
-    "sid" : "(resInviteUser의)data.sid",
-    "roomname" : "room_id"
+    "sid": "(resInviteUser의)data.sid",
+    "roomname": room_id
 
 
 > <code>on</code> resAcceptInvite, (data) 
@@ -257,23 +256,44 @@
   
     room_id = data.roomname;
      
-        
+
+#### 접속 
 > <code>emit</code> joinRoom
 >> Requiring Params
 
-    "roomname" : "room_id"
+    "roomname": room_id
 
 
-> <code>on</code> resAcceptInvite, (data) 
+#### 채팅 내 알림
+> <code>on</code> notice, (data) 
 >> Return Value
 
     >>> Success
     
-        return {  }
-
+        return { message: "noticeMessage" }
         
     >>> Fail
     
         None
         
+#### 채팅
+* 채팅 보내기
+> <code>emit</code> sendMessage
+>> Requiring Params
 
+    "contents": "sendContents",
+    "roomname": room_id,
+    "from": "userNickname"
+
+* 채팅 받기 
+> <code>on</code> receiveMessage, (data) 
+>> Return Value
+
+    >>> Success
+    
+        return { contents: "receivedContents", from: "from-Nickname" }
+        
+    >>> Fail
+    
+        None
+        
