@@ -19,7 +19,7 @@
     </div>
 
     <div class="list-menu">
-        <table class="userlist" border="1px solid black"></table>
+        <table class="userlist"></table>
     </div>
 
     <div class="chat-menu">
@@ -37,8 +37,8 @@
     </div>
 
     <script type="text/javascript">
-        //var socket = io.connect('http://15.164.126.18/');
-        var socket = io.connect('http://localhost/');
+        var socket = io.connect('http://15.164.126.18/');
+        //var socket = io.connect('http://localhost/');
         var room_id;
         var chat_name;
 
@@ -86,7 +86,7 @@
                     "<td>" + userData[i].age + "</td>" +
                     "<td>" + userData[i].region + "</td>" +
                     "<td>" + userData[i].introduce + "</td>" +
-                    "<td>" + userData[i].profile + "</td>" +
+                    //"<td>" + userData[i].profile + "</td>" +
                     "</tr>");
             }
         });

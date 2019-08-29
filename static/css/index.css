@@ -1,9 +1,16 @@
-.online {
-    display: flex;
-}
-
 .chatlog .line {
     font-family: 'NanumSquare', sans-serif;
+}
+
+.list-menu>.userlist {
+    font-size: 12px;
+    font-family: 'NanumSquare', sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.list-menu>.userlist td{
+    border: 1px solid black;
 }
 
 @media screen and (max-width: 840px) {
@@ -32,13 +39,13 @@
 
     .list-menu{
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
     }
 
     .list-menu>.userlist {
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
-        width: 100vw;
+
     }
 
     .chat-menu {
