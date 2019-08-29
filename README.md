@@ -222,10 +222,13 @@
 * <code>String sid = data.sid</code>
 
 #### 초대 수락
-> <code>emit</code> reqOnline
+> <code>emit</code> reqAcceptInvite
 >> Requiring Params
 
-    "email" : "userEmail"
+    "sid" : "sid",
+    "roomname" : "room_id"
+    
+    //sid, room_id 모두 저장한 값
 
 > <code>on</code> resOnline, (data) 
 >> Return Value
