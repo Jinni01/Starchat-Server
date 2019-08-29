@@ -13,7 +13,7 @@
     border: 1px solid black;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-device-width: 840px) {
     .online-menu {
         display: flex;
         justify-content: space-around;
