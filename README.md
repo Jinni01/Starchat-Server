@@ -145,6 +145,8 @@
 * Socket.io를 통해 이벤트 통신을 하기 때문에 한 동작에 대해 <code>emit</code>, <code>on</code> 이 짝을 이룸
 * 이벤트명은 <code>emit</code>|<code>on</code> eventName 과 같이 표기함
 * on을 통한 반환시 (data) 와 같은 값을 받아줄 변수가 필요함 (<code>ex</code> { success: true } 반환시 data.true 로 접근 )
+* 미리 만들어놔야 할 변수
+- <code>String room_id</code>
 
 #### 온라인 상태 등록
 > <code>emit</code> reqOnline
@@ -210,15 +212,17 @@
     
         return { from: "from-Email", sid:"from-SocketID" }
         
-        action : 초대 수락/거절
+        action
+        - 수락 : reqAcceptInvite
+        - 거절 : None 
         
     >>> Fail
     
         None
         
         
-* 초대 수락시 클라이언트에서 생성해야 할 값
-* <code>String room_id = data.from + "-" + ```초대를 받은 유저의 userEmail```;</code> 
+* 초대 수락시 클라이언트에서 저장해야 할 값
+* <code>room_id = data.from + "-" + 초대를 받은 유저의 userEmail;</code> 
 * <code>String sid = data.sid</code>
 
 #### 초대 수락
@@ -230,12 +234,12 @@
     
     //sid, room_id 모두 저장한 값
 
-> <code>on</code> resOnline, (data) 
+> <code>on</code> resAcceptInvite, (data) 
 >> Return Value
 
     >>> Success
     
-        return { success: true, message: "접속 성공" }
+        return {  }
         
     >>> Fail
     
