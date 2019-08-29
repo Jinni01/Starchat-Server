@@ -148,7 +148,7 @@
 
 > 미리 선언해야 할 변수
     
-    String sid;
+    String room_id;
 
 #### 온라인 상태 등록
 > <code>emit</code> reqOnline
@@ -223,9 +223,9 @@
         None
         
         
-* 초대 수락시 클라이언트에서 저장해야 할 값
-* <code>room_id = data.from + "-" + 초대를 받은 유저의 userEmail;</code> 
-* <code>String sid = data.sid</code>
+> 초대 수락시 클라이언트에서 초기화
+   
+    room_id = data.from + "-" + 초대를 받은 유저의 userEmail;
 
 #### 초대 수락
 > <code>emit</code> reqAcceptInvite
