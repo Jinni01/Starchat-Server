@@ -257,6 +257,9 @@
     room_id = data.roomname;
      
 
+#### 초대 거절
+
+
 #### 접속 
 > <code>emit</code> joinRoom
 >> Requiring Params
