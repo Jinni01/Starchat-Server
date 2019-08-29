@@ -218,7 +218,7 @@
         
         
 * 초대 수락시 클라이언트에서 생성해야 할 값
-* <code>String room_id = data.from + "-" + `초대를 받은 유저의 userEmail`;</code> 
+* <code>String room_id = data.from + "-" + ```초대를 받은 유저의 userEmail```;</code> 
 * <code>String sid = data.sid</code>
 
 #### 초대 수락
