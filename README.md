@@ -322,14 +322,15 @@
 > <code>emit</code> reqExitRoom
 >> Requiring Params
 
-    dsd
+    "roomname": room_id
+
 
 > <code>on</code> resExitRoom, (data) 
 >> Return Value
 
     >>> Success
     
-        return { contents: "receivedContents", from: "from-Nickname" }
+        return { message: "채팅방에서 나왔습니다" }
         
     >>> Fail
     
