@@ -203,15 +203,22 @@
     "to" : "otherUserEmail",
     "from" : "userEmail"
 
-> <code>on</code> resOnline, (data) 
+> <code>on</code> resInviteUser, (data) 
 >> Return Value
 
     >>> Success
     
-        return { success: true, message: "접속 성공" }
+        return { from: "from-Email", sid:"from-SocketID" }
+        
+        action : 초대 수락/거절
         
     >>> Fail
     
         None
-        
-        
+
+
+#### 초대 수락
+*수락 
+
+#### 초대 수락
+> 
