@@ -7,7 +7,9 @@
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
 
+
     <title>StarChat Socket Test</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
 </head>
 
 <body>
@@ -37,8 +39,8 @@
     </div>
 
     <script type="text/javascript">
-        var socket = io.connect('http://15.164.126.18/');
-        //var socket = io.connect('http://localhost/');
+        //var socket = io.connect('http://15.164.126.18/');
+        var socket = io.connect('http://localhost/');
         var room_id;
         var chat_name;
 
