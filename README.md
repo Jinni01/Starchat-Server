@@ -215,10 +215,9 @@
     >>> Fail
     
         None
-
+        
+        
+* 초대 수락시 클라이언트에서 저장해야 할 값 : <code>String room_id = data.from + "-" + userEmail; </code>
 
 #### 초대 수락
-*수락 
-
-#### 초대 수락
-> 
+>
