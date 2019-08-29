@@ -194,3 +194,24 @@
     >>> Fail
     
         None
+        
+        
+#### 채팅 초대 
+> <code>emit</code> reqInviteUser
+>> Requiring Params
+
+    "to" : "otherUserEmail",
+    "from" : "userEmail"
+
+> <code>on</code> resOnline, (data) 
+>> Return Value
+
+    >>> Success
+    
+        return { success: true, message: "접속 성공" }
+        
+    >>> Fail
+    
+        None
+        
+        
