@@ -21,6 +21,7 @@
 
     .online-menu>.onlinebox {
         width: 50vw;
+        height: 30px;
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
     }
@@ -55,6 +56,7 @@
 
     .chat-menu>.invitebox {
         width: 50vw;
+        height: 30px;
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
     }
@@ -76,6 +78,91 @@
 
     .float-menu>.chatbox {
         width: 50vw;
+        height: 30px;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .float-menu>.send {
+        width: 25vw;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .float-menu>.exit {
+        width: 25vw;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+}
+
+@media screen and (max-width: 840px) {
+    .online-menu {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .online-menu>.onlinebox {
+        width: 50vw;
+        height: 30px;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .online-menu>.onlinebutton {
+        width: 25vw;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .online-menu>.reload {
+        width: 25vw;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .list-menu{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .list-menu>.userlist {
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+
+    }
+
+    .chat-menu {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .chat-menu>.invitebox {
+        width: 50vw;
+        height: 30px;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .chat-menu>.invite {
+        width: 50vw;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .float-menu {
+        display: flex;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 10px;
+        left: 8px;
+        right: 8px;
+    }
+
+    .float-menu>.chatbox {
+        width: 50vw;
+        height: 30px;
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
     }
