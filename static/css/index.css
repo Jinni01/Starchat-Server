@@ -28,14 +28,14 @@
 
     .online-menu>.onlinebutton {
         width: 25vw;
-        height: 100px;
+        height: 80px;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
 
     .online-menu>.reload {
         width: 25vw;
-        height: 100px;
+        height: 80px;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
@@ -64,7 +64,7 @@
 
     .chat-menu>.invite {
         width: 50vw;
-        height: 100px;
+        height: 80px;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
@@ -87,14 +87,14 @@
 
     .float-menu>.send {
         width: 25vw;
-        height: 100px;
+        height: 80px;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
 
     .float-menu>.exit {
         width: 25vw;
-        height: 100px;
+        height: 80px;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
