@@ -242,10 +242,38 @@
 
     >>> Success
     
+        return { roomname: new-roomname }
+        
+        action
+        - joinRoom
+        
+    >>> Fail
+    
+        None
+
+
+> 필요 작업 
+>> <code>room_id</code> 변수 초기화
+  
+    room_id = data.roomname;
+     
+        
+> <code>emit</code> joinRoom
+>> Requiring Params
+
+    "roomname" : "room_id"
+
+
+> <code>on</code> resAcceptInvite, (data) 
+>> Return Value
+
+    >>> Success
+    
         return {  }
+
         
     >>> Fail
     
         None
         
-        
+
