@@ -9,7 +9,7 @@
     border: 1px solid black;
 }
 
-.list-menu>.userlist td{
+.list-menu>.userlist td {
     border: 1px solid black;
 }
 
@@ -22,37 +22,32 @@
     .online-menu>.onlinebox {
         width: 50vw;
         height: 100px;
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
     }
 
     .online-menu>.onlinebutton {
         width: 25vw;
         height: 100px;
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
-
-        -webkit-appearance:none;
     }
 
     .online-menu>.reload {
         width: 25vw;
         height: 100px;
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
-
-        -webkit-appearance:none;
     }
 
-    .list-menu{
+    .list-menu {
         display: flex;
         justify-content: space-between;
     }
 
     .list-menu>.userlist {
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
-
     }
 
     .chat-menu {
@@ -63,17 +58,15 @@
     .chat-menu>.invitebox {
         width: 50vw;
         height: 100px;
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
     }
 
     .chat-menu>.invite {
         width: 50vw;
         height: 100px;
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
-
-        -webkit-appearance:none;
     }
 
     .float-menu {
@@ -88,26 +81,22 @@
     .float-menu>.chatbox {
         width: 50vw;
         height: 100px;
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
     }
 
     .float-menu>.send {
         width: 25vw;
         height: 100px;
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
-
-        -webkit-appearance:none;
     }
 
     .float-menu>.exit {
         width: 25vw;
         height: 100px;
-        font-size: 70px;
+        font-size: 50px;
         font-family: 'NanumSquare', sans-serif;
-
-        -webkit-appearance:none;
     }
 
 }
@@ -137,7 +126,7 @@
         font-family: 'NanumSquare', sans-serif;
     }
 
-    .list-menu{
+    .list-menu {
         display: flex;
         justify-content: space-between;
     }
