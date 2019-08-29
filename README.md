@@ -222,19 +222,20 @@
     
         None
         
-        
-> 초대 수락시 클라이언트에서 초기화
-   
-    room_id = data.from + "-" + 초대를 받은 유저의 userEmail;
 
 #### 초대 수락
+> 필요 작업
+>> <code>room_id</code> 변수 초기화
+  
+    room_id = data.from + "-" + 초대를 받은 유저의 userEmail;
+    
+    
 > <code>emit</code> reqAcceptInvite
 >> Requiring Params
 
-    "sid" : "sid",
+    "sid" : "(resInviteUser의)data.sid",
     "roomname" : "room_id"
-    
-    //sid, room_id 모두 저장한 값
+
 
 > <code>on</code> resAcceptInvite, (data) 
 >> Return Value
