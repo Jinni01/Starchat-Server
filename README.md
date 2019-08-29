@@ -218,8 +218,8 @@
         
         
 * 초대 수락시 클라이언트에서 생성해야 할 값
-<code>String room_id = data.from + "-" + userEmail;</code> 
-<code>String sid = data.sid</code>
+* <code>String room_id = data.from + "-" + userEmail;</code> 
+* <code>String sid = data.sid</code>
 
 #### 초대 수락
 > <code>emit</code> reqOnline
