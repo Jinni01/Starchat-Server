@@ -24,8 +24,6 @@
         height: 100px;
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
-
-        -webkit-appearance:none;
     }
 
     .online-menu>.onlinebutton {
@@ -67,8 +65,6 @@
         height: 100px;
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
-
-        -webkit-appearance:none;
     }
 
     .chat-menu>.invite {
@@ -94,8 +90,6 @@
         height: 100px;
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
-
-        -webkit-appearance:none;
     }
 
     .float-menu>.send {
