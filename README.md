@@ -145,8 +145,10 @@
 * Socket.io를 통해 이벤트 통신을 하기 때문에 한 동작에 대해 <code>emit</code>, <code>on</code> 이 짝을 이룸
 * 이벤트명은 <code>emit</code>|<code>on</code> eventName 과 같이 표기함
 * on을 통한 반환시 (data) 와 같은 값을 받아줄 변수가 필요함 (<code>ex</code> { success: true } 반환시 data.true 로 접근 )
-* 미리 만들어놔야 할 변수
-- <code>String room_id</code>
+
+> 미리 선언해야 할 변수
+    
+    String sid;
 
 #### 온라인 상태 등록
 > <code>emit</code> reqOnline
