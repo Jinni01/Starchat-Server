@@ -22,8 +22,9 @@
 
 ## API Document
 
-* [1.Auth](#auth)
-* [2.Chat](#chat)
+목차
+1.Auth(#auth)
+2.Chat(#chat)
 
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴) <span id="auth"></span>
