@@ -342,21 +342,27 @@
         None
         
         
-### TOS & PP (서비스 이용약관, 개인정보 처리 방침)
+### TOS & PP (서비스 이용약관, 개인정보처리방침)
+* 파싱용 페이지
 
-
-> /user/logout
+#### 서비스 이용약관
+> /tos
 >> Requiring Params
 
     NO Param
     
 >> Return Value
 
-    >>> Success
-    
-        { return HTTP 200, success: true, message: "로그아웃 성공" }
+    >>> tos.html
         
-    >>> Fail
+
+#### 개인정보처리방침
+> /privacypolicy
+>> Requiring Params
+
+    NO Param
     
-        { return HTTP 400, success: false, message: "로그인되어 있지 않습니다" }
+>> Return Value
+
+    >>> privacypolicy.html
         
