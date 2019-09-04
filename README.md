@@ -25,7 +25,7 @@
 ### 목차
 1. [Auth](#auth)
 2. [Chat](#chat)
-3. [TOS & PP](#tos)
+3. [TOS & PP](#tospp)
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴) <span id="auth"></span>
 * 로그인 방식 : 세션
@@ -342,7 +342,7 @@
         None
         
         
-### TOS & PP (서비스 이용약관, 개인정보처리방침)
+### TOS & PP (서비스 이용약관, 개인정보처리방침) <span id="tospp"></span>
 * 파싱용 페이지
 
 #### 서비스 이용약관
