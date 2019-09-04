@@ -145,7 +145,7 @@
         return HTTP 500, { success: false, message: "DB에러" }
     
     
-### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 접속, 채팅, 종료)
+### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 접속, 채팅, 종료) <span id="chat"></span>
 * 이벤트명은 <code>emit</code>|<code>on</code> eventName 과 같이 표기함
 * on을 통한 반환시 (data) 와 같은 값을 받아줄 변수가 필요함 (<code>ex</code> { success: true } 반환시 data.true 로 접근 )
 
