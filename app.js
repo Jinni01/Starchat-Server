@@ -24,13 +24,17 @@ app.use(morgan("dev"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended : true
+    extended: true
 }));
 
 app.use(flash());
-app.use(session({ secret: '213jkdjsk21', resave: true, saveUninitialized: false })); 
-app.use(passport.initialize()); 
-app.use(passport.session()); 
+app.use(session({
+    secret: '213jkdjsk21',
+    resave: true,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 passportConfig();
 
 //*Region Static Router 
@@ -53,6 +57,14 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/html/index.html"));
 });
 
+app.get("/privacypolicy", (req, res) => {
+    res.sendFile(path.join(__dirname, "static/html/privacypolicy.html"));
+});
+
+app.get("/tos", (req, res) => {
+    res.sendFile(path.join(__dirname, "static/html/tos.html"));
+});
+
 app.use((req, res, next) => {
     const err = new Error("Not Found");
     err.status = 404;
@@ -64,6 +76,6 @@ app.use((err, req, res, next) => {
     res.status(500).send("서버 에러");
 });
 
-server.listen(app.get("port"), ()=> {
+server.listen(app.get("port"), () => {
     console.log(app.get("port"), "번 포트 열림");
 });
