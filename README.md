@@ -22,7 +22,7 @@
 
 ## API Document
 
-*[1.Auth](#Auth)
+[1.Auth](###Auth)
 
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴)
