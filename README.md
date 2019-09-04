@@ -353,7 +353,13 @@
     
 >> Return Value
 
-    >>> tos.html
+    >>> Success
+    
+        return tos.html
+        
+    >>> Fail
+    
+        None
         
 
 #### 개인정보처리방침
@@ -364,5 +370,11 @@
     
 >> Return Value
 
-    >>> privacypolicy.html
+    >>> Success
+    
+        return privacypolicy.html
+        
+    >>> Fail
+    
+        None
         
