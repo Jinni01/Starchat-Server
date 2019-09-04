@@ -22,7 +22,7 @@
 
 ## API Document
 
-목차
+### 목차
 1. [Auth](#auth)
 2. [Chat](#chat)
 
