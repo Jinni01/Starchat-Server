@@ -25,6 +25,7 @@
 ### 목차
 1. [Auth](#auth)
 2. [Chat](#chat)
+3. [TOS & PP](#tos)
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴) <span id="auth"></span>
 * 로그인 방식 : 세션
@@ -340,4 +341,22 @@
     
         None
         
+        
+### TOS & PP (서비스 이용약관, 개인정보 처리 방침)
+
+
+> /user/logout
+>> Requiring Params
+
+    NO Param
+    
+>> Return Value
+
+    >>> Success
+    
+        { return HTTP 200, success: true, message: "로그아웃 성공" }
+        
+    >>> Fail
+    
+        { return HTTP 400, success: false, message: "로그인되어 있지 않습니다" }
         
