@@ -125,7 +125,7 @@ router.post("/create-profile", upload.single("userProfile"), (req, res) => {
     console.log("req.body => ");
     console.log(req.body);
 
-    const userProfile = req.file.filename;
+    const userProfile = req.file ? req.file.filename : "sample.jpg";
     const userSigndate = dateFormat(new Date(), "yyyy-mm-dd'T'HH:MM:ss");
 
     let userPW_incrypted = undefined;
