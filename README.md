@@ -60,7 +60,7 @@
     "userPW": "pw" (String),
     "userNickname": "nickname" (String),
     "userSex": "sex" (String),
-    "userAge": "age" (tinyint),
+    "userAge": "age" (String),
     "userRegion": "region" (String),
     "userIntroduce": "introduce" (String),
     "userProfile": "profile" (file)
@@ -93,7 +93,7 @@
             "id": "id" (String),
             "nickname": "nickname" (String),
             "sex": "sex" (String),
-            "age": "age" (tinyint),
+            "age": "age" (String),
             "region": "region" (String),
             "introduce": "introduce" (String),
             "profile": "profile" (String),
