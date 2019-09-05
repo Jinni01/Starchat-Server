@@ -38,10 +38,9 @@ app.use(passport.session());
 passportConfig();
 
 //*Region Static Router 
-app.use("profileImage", express.static(path.join(__dirname, "user/profileImage")));
-//*EndRegionpassportUserConfig();
-
 app.use(express.static(path.join(__dirname, "static")));
+app.use("/profileImage", express.static(path.join(__dirname, "routes/user/profileImage")));
+//*EndRegion
 
 //*Region Router
 app.use("/user", userRouter);
