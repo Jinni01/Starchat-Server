@@ -12,7 +12,7 @@
 | pw | varchar(300) | NO |  | 암호화된 PW | 
 | nickname | varchar(50) | NO |  | 닉네임 |
 | sex | varchar(10) | NO |  | 성별 |
-| age | tinyint(4) | NO |  | 나이 (0~255) |
+| age | varchar(30) | NO |  | 생년월일 |
 | region | varchar(50) | NO |  | 지역 |
 | introduce | varchar(200) | YES |  | 소개 |
 | profile | varchar(100) | YES |  | 프로필 이미지 서버 저장 경로 |
