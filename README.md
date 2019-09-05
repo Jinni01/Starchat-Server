@@ -12,7 +12,7 @@
 | pw | varchar(300) | NO |  | 암호화된 PW | 
 | nickname | varchar(50) | NO |  | 닉네임 |
 | sex | varchar(10) | NO |  | 성별 |
-| age | tinyint(4) | NO |  | 나이 (0~255) |
+| age | varchar(30) | NO |  | 생년월일 |
 | region | varchar(50) | NO |  | 지역 |
 | introduce | varchar(200) | YES |  | 소개 |
 | profile | varchar(100) | YES |  | 프로필 이미지 서버 저장 경로 |
@@ -22,7 +22,12 @@
 
 ## API Document
 
-### Auth (회원가입, 로그인, 로그아웃, 탈퇴)
+### 목차
+1. [Auth](#auth)
+2. [Chat](#chat)
+3. [TOS & PP](#tospp)
+
+### Auth (회원가입, 로그인, 로그아웃, 탈퇴) <span id="auth"></span>
 * 로그인 방식 : 세션
 
 #### Email/ID 중복체크
@@ -55,7 +60,7 @@
     "userPW": "pw" (String),
     "userNickname": "nickname" (String),
     "userSex": "sex" (String),
-    "userAge": "age" (tinyint),
+    "userAge": "age" (String),
     "userRegion": "region" (String),
     "userIntroduce": "introduce" (String),
     "userProfile": "profile" (file)
@@ -88,7 +93,7 @@
             "id": "id" (String),
             "nickname": "nickname" (String),
             "sex": "sex" (String),
-            "age": "age" (tinyint),
+            "age": "age" (String),
             "region": "region" (String),
             "introduce": "introduce" (String),
             "profile": "profile" (String),
@@ -141,7 +146,7 @@
         return HTTP 500, { success: false, message: "DB에러" }
     
     
-### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 접속, 채팅, 종료)
+### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 접속, 채팅, 종료) <span id="chat"></span>
 * 이벤트명은 <code>emit</code>|<code>on</code> eventName 과 같이 표기함
 * on을 통한 반환시 (data) 와 같은 값을 받아줄 변수가 필요함 (<code>ex</code> { success: true } 반환시 data.true 로 접근 )
 
@@ -336,4 +341,40 @@
     
         None
         
+        
+### TOS & PP (서비스 이용약관, 개인정보처리방침) <span id="tospp"></span>
+* 파싱용 페이지
+
+#### 서비스 이용약관
+> /tos
+>> Requiring Params
+
+    NO Param
+    
+>> Return Value
+
+    >>> Success
+    
+        return tos.html
+        
+    >>> Fail
+    
+        None
+        
+
+#### 개인정보처리방침
+> /privacypolicy
+>> Requiring Params
+
+    NO Param
+    
+>> Return Value
+
+    >>> Success
+    
+        return privacypolicy.html
+        
+    >>> Fail
+    
+        None
         
