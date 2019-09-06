@@ -1,9 +1,9 @@
 const connection = require("./db/db_connection");
 
 module.exports = (io) => {
-    var online_users = [];
+    var online_users_list = [];
+    var online_users_data = {};
     var socket_ids = [];
-    var room_id;
 
     io.sockets.on("connection", (socket) => {
         console.log("소켓 : 유저 접속");
@@ -12,13 +12,15 @@ module.exports = (io) => {
             console.log("소켓 : 온라인 연결 시도");
             console.log(data);
 
-            connection.query("select email, id, nickname, sex, age, region, introduce, profile from user where email=?", [data.email], (err, result, fields) => {
+            connection.query("select nickname, sex, age, region, introduce, profile from user where email=?", [data.email], (err, result, fields) => {
                 if (err) {
                     console.log(err);
                 }
                 if (result && result.length != null) {
-                    online_users.push(result[0]);
-                    console.log(online_users);
+                    online_users_list.push(data.email);
+                    console.log(online_users_list);
+                    online_users_data[data.email] = result[0];
+                    console.log(online_users_data);
 
                     socket_ids[data.email] = socket.id;
                     console.log(socket_ids);
@@ -33,10 +35,27 @@ module.exports = (io) => {
             });
         });
 
+        socket.on("reqOffline", (data) => {
+            delete online_users_list.splice(online_users_list.indexOf(data.email), 1);
+            delete online_users_data[data.email];
+            delete socket_ids[data.email];
+
+            console.log("list");
+            console.log(online_users_list);
+            console.log("data");
+            console.log(online_users_data);
+            console.log("s_ids");
+            console.log(socket_ids);
+        });
+
         socket.on("reqOnlineUser", () => {
             console.log("소켓 : 온라인 유저 정보 요청받음");
 
-            socket.emit("resOnlineUser", online_users);
+            //socket.emit("resOnlineUser", online_users);
+            socket.emit("resOnlineUser", {
+                list: online_users_list,
+                data: online_users_data
+            });
         });
 
         socket.on("reqInviteUser", (data) => {
@@ -52,7 +71,7 @@ module.exports = (io) => {
         socket.on("reqAcceptInvite", (data) => {
             console.log("소켓 : 초대 수락 요청받음")
             console.log(data);
-            
+
             socket.join(data.roomname);
 
             io.to(data.sid).emit("resAcceptInvite", {

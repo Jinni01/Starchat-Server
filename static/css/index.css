@@ -26,13 +26,19 @@
     }
 
     .online-menu>.onlinebutton {
-        width: 25vw;
+        width: 16vw;
+        font-size: 30px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .online-menu>.offlinebutton {
+        width: 16vw;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
 
     .online-menu>.reload {
-        width: 25vw;
+        width: 16vw;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
@@ -112,13 +118,19 @@
     }
 
     .online-menu>.onlinebutton {
-        width: 25vw;
+        width: 16vw;
+        font-size: 15px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .online-menu>.offlinebutton {
+        width: 16vw;
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
     }
 
     .online-menu>.reload {
-        width: 25vw;
+        width: 18vw;
         font-size: 15px;
         font-family: 'NanumSquare', sans-serif;
     }

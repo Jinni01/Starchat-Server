@@ -16,8 +16,9 @@
 
     <div class="online-menu">
         <input type="text" class="onlinebox" />
-        <button class="onlinebutton">서버 접속</button>
-        <button class="reload">유저 목록</button>
+        <button class="onlinebutton">접속</button>
+        <button class="offlinebutton">종료</button>
+        <button class="reload">목록</button>
     </div>
 
     <div class="list-menu">
@@ -39,7 +40,8 @@
     </div>
 
     <script type="text/javascript">
-        var socket = io.connect('http://15.164.126.18');
+        var socket = io.connect('http://localhost');
+        //var socket = io.connect('http://15.164.126.18');
         var room_id;
         var chat_name;
 
@@ -48,6 +50,12 @@
                 email: $(".onlinebox").val()
             });
             chat_name = $(".onlinebox").val();
+        });
+
+        $(".offlinebutton").click(() => {
+            socket.emit("reqOffline", {
+                email: $(".onlinebox").val()
+            });
         });
 
         $(".reload").click(() => {
@@ -79,14 +87,19 @@
             alert(data.message);
         });
 
-        socket.on("resOnlineUser", (userData) => {
-            for (var i = 0; i < userData.length; ++i) {
+        socket.on("resOnlineUser", (data) => {
+            console.log(data);
+
+            const userData = data.data;
+            const userList = data.list
+
+            for (var i = 0; i < data.list.length; ++i) {
                 $(".userlist").append("<tr>" +
-                    "<td>" + userData[i].nickname + "</td>" +
-                    "<td>" + userData[i].sex + "</td>" +
-                    "<td>" + userData[i].age + "</td>" +
-                    "<td>" + userData[i].region + "</td>" +
-                    "<td>" + userData[i].introduce + "</td>" +
+                    "<td>" + userData[userList[i]].nickname + "</td>" +
+                    "<td>" + userData[userList[i]].sex + "</td>" +
+                    "<td>" + userData[userList[i]].age + "</td>" +
+                    "<td>" + userData[userList[i]].region + "</td>" +
+                    "<td>" + userData[userList[i]].introduce + "</td>" +
                     //"<td>" + userData[i].profile + "</td>" +
                     "</tr>");
             }
