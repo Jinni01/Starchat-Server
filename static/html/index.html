@@ -141,6 +141,7 @@
         });
 
         socket.on("notice", (data) => {
+            $(".chatlog").append("<p class=line>" + "[notice] 채팅방에 입장하셨습니다." + "</p>");
             console.log(data);
         });
 
