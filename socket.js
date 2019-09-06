@@ -46,6 +46,11 @@ module.exports = (io) => {
             console.log(online_users_data);
             console.log("s_ids");
             console.log(socket_ids);
+
+            socket.emit("resOffline", {
+                success: true,
+                message: "접속 해제"
+            });
         });
 
         socket.on("reqOnlineUser", () => {
