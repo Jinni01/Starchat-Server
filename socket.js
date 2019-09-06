@@ -96,7 +96,7 @@ module.exports = (io) => {
 
             socket.join(data.roomname);
             io.to(data.roomname).emit("notice", {
-                message: data.roomname + " 채팅방에 입장하셨습니다.",
+                message: data.roomname + " 채팅방에 입장하였습니다.",
             });
         });
 

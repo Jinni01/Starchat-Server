@@ -1,4 +1,13 @@
-.chatlog .line {
+.chatlog>.notice .line {
+    font-family: 'NanumSquare', sans-serif;
+    font-size: 15px;
+}
+
+.chatlog>.chat .to {
+    font-family: 'NanumSquare', sans-serif;
+}
+
+.chatlog>.chat .from {
     font-family: 'NanumSquare', sans-serif;
 }
 
@@ -97,11 +106,51 @@
         font-family: 'NanumSquare', sans-serif;
     }
 
-    .chatlog .line {
+    .chatlog{
+        margin-bottom: 46px;
+        overflow: scroll;
+    }
+
+    .chatlog>.notice {
+        display: flex;
+        justify-content: center;
+    }
+
+    .chatlog>.notice .line {
         font-family: 'NanumSquare', sans-serif;
         font-size: 15px;
     }
 
+    .chatlog>.chat{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chatlog>.chat .to {
+        font-family: 'NanumSquare', sans-serif;
+        font-size: 15px;
+        align-self: flex-end;
+
+        background-color: darkblue;
+        color: white;
+
+        margin: 2px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .chatlog>.chat .from {
+        font-family: 'NanumSquare', sans-serif;
+        font-size: 15px;
+        align-self: flex-start;
+
+        background-color: darkmagenta;
+        color: white;
+
+        margin: 2px;
+        padding: 5px;
+        border-radius: 5px;
+    }
 }
 
 @media screen and (max-width: 840px) {
@@ -192,4 +241,49 @@
         font-family: 'NanumSquare', sans-serif;
     }
 
+    .chatlog{
+        margin-bottom: 46px;
+        overflow: scroll;
+    }
+
+    .chatlog>.notice {
+        display: flex;
+        justify-content: center;
+    }
+
+    .chatlog>.notice .line {
+        font-family: 'NanumSquare', sans-serif;
+        font-size: 15px;
+    }
+
+    .chatlog>.chat{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chatlog>.chat .to {
+        font-family: 'NanumSquare', sans-serif;
+        font-size: 15px;
+        align-self: flex-end;
+
+        background-color: darkblue;
+        color: white;
+
+        margin: 2px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .chatlog>.chat .from {
+        font-family: 'NanumSquare', sans-serif;
+        font-size: 15px;
+        align-self: flex-start;
+
+        background-color: darkmagenta;
+        color: white;
+
+        margin: 2px;
+        padding: 5px;
+        border-radius: 5px;
+    }
 }

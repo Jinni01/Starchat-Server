@@ -31,7 +31,10 @@
 
     </div>
 
-    <div class="chatlog"></div>
+    <div class="chatlog">
+        <div class="notice"></div>
+        <div class="chat"></div>
+    </div>
 
     <div class="float-menu">
         <input type="text" class="chatbox" />
@@ -40,7 +43,8 @@
     </div>
 
     <script type="text/javascript">
-        var socket = io.connect('http://15.164.126.18');
+        //var socket = io.connect('http://15.164.126.18');
+        var socket = io.connect('http://localhost');
         var room_id;
         var chat_name;
 
@@ -69,11 +73,16 @@
         });
 
         $(".send").click(() => {
-            socket.emit("sendMessage", {
-                contents: $(".chatbox").val(),
-                roomname: room_id,
-                from: chat_name
-            });
+            if ($(".chatbox").val() != "") {
+                socket.emit("sendMessage", {
+                    contents: $(".chatbox").val(),
+                    roomname: room_id,
+                    from: chat_name
+                });
+            }
+            else{
+                alert("내용을 입력해주세요");
+            }
         });
 
         $(".exit").click(() => {
@@ -141,12 +150,18 @@
         });
 
         socket.on("notice", (data) => {
-            $(".chatlog").append("<p class=line>" + "[notice] 채팅방에 입장하셨습니다." + "</p>");
+            $(".chatlog>.notice").append("<p class=line>" + "[notice] 채팅방에 입장하셨습니다." + "</p>");
             console.log(data);
         });
 
         socket.on("receiveMessage", (data) => {
-            $(".chatlog").append("<p class=line>" + data.from + " : " + data.contents + "</p>");
+            if ($(".onlinebox").val() == data.from) {
+                $(".chatlog>.chat").append("<div class=to>" + data.contents + "</div>");
+                document.body.scrollTop = document.body.scrollHeight;
+            } else {
+                $(".chatlog>.chat").append("<div class=from>" + data.contents + "</div>");
+                document.body.scrollTop = document.body.scrollHeight;
+            }
         });
 
         socket.on("resExitRoom", (data) => {
