@@ -146,7 +146,7 @@
         return HTTP 500, { success: false, message: "DB에러" }
     
     
-### Chat (온라인 상태 등록, 온라인 유저 목록, 채팅 초대/응답, 채팅방 접속, 채팅, 채팅방 나가기) <span id="chat"></span>
+### Chat (온라인 상태 등록, 온라인 유저 목록& 데이터 , 채팅 초대/응답, 채팅방 접속, 채팅, 채팅방 나가기) <span id="chat"></span>
 * 이벤트명은 <code>emit</code>|<code>on</code> eventName 과 같이 표기함
 * on을 통한 반환시 (data) 와 같은 값을 받아줄 변수가 필요함 (<code>ex</code> { success: true } 반환시 data.true 로 접근 )
 
@@ -172,7 +172,25 @@
         None
         
         
-#### 온라인 유저 목록
+#### 온라인 상태 해제
+> <code>emit</code> reqOffline
+>> Requiring Params
+
+    "email": "userEmail"
+
+> <code>on</code> resOffline, (data) 
+>> Return Value
+
+    >>> Success
+    
+        return { success: true, message: "접속 해제" }
+        
+    >>> Fail
+    
+        None        
+        
+        
+#### 온라인 유저 목록 & 데이터
 > <code>emit</code> reqOnlineUser
 >> Requiring Params
 
@@ -183,21 +201,21 @@
 
     >>> Success
     
-        return userList [
-        {
-            "email : "userEmail" : {
-                "nickname": "userNickname",
-                "sex": "userSex",
-                "age": "userAge",
-                "region": "userRegion",
-                "introduce": "userIntroduce",
-                "profile": "userProfile"             
-            }
+        return {
+            data: 
+                userEmail1: {
+                    age: "userAge"
+                    introduce: "userIntroduce"
+                    nickname: "userNickname"
+                    profile: "userProfile"
+                    region: "userRegion"
+                    sex: "userSex"
+                }
+                userEmail2: {
+                    ...
+                }
+            list: [ userEmail1, userEmail2, userEmail3, ... ]
         }
-        {
-            ...
-        }
-        ]
         
     >>> Fail
     
