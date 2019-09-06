@@ -185,14 +185,14 @@
     
         return userList [
         {
-            "email": "userEmail",
-            "id": "userID",
-            "nickname": "userNickname",
-            "sex": "userSex",
-            "age": "userAge",
-            "region": "userRegion",
-            "introduce": "userIntroduce",
-            "profile": "userProfile" 
+            "email : "userEmail" : {
+                "nickname": "userNickname",
+                "sex": "userSex",
+                "age": "userAge",
+                "region": "userRegion",
+                "introduce": "userIntroduce",
+                "profile": "userProfile"             
+            }
         }
         {
             ...
