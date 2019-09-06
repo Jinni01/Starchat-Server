@@ -83,6 +83,12 @@
         });
 
         socket.on("resOnline", (data) => {
+            console.log(data);
+            alert(data.message);
+        });
+
+        socket.on("resOffline", (data) => {
+            console.log(data);
             alert(data.message);
         });
 
