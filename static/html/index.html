@@ -156,10 +156,14 @@
         socket.on("receiveMessage", (data) => {
             if ($(".onlinebox").val() == data.from) {
                 $(".chatlog>.chat").append("<div class=to>" + data.contents + "</div>");
-                document.body.scrollTop = document.body.scrollHeight;
+                //document.body.scrollTop = document.body.scrollHeight;
+                $(document).scrollTop($(document).height());
+
             } else {
                 $(".chatlog>.chat").append("<div class=from>" + data.contents + "</div>");
-                document.body.scrollTop = document.body.scrollHeight;
+                //document.body.scrollTop = document.body.scrollHeight;
+                $(document).scrollTop($(document).height());
+
             }
         });
 
