@@ -43,6 +43,9 @@ module.exports = (io) => {
         });
 
         socket.on("reqOffline", (data) => {
+            data = parser.discriminateParse(data);
+            console.log(data);
+
             delete online_users_list.splice(online_users_list.indexOf(data.email), 1);
             delete online_users_data[data.email];
             delete socket_ids[data.email];
@@ -74,6 +77,9 @@ module.exports = (io) => {
             console.log("소켓 : 유저 초대 요청받음")
             console.log(data);
 
+            data = parser.discriminateParse(data);
+            console.log(data);
+
             io.to(socket_ids[data.to]).emit("resInviteUser", {
                 from: data.from,
                 sid: socket_ids[data.from]
@@ -84,6 +90,9 @@ module.exports = (io) => {
             console.log("소켓 : 초대 수락 요청받음")
             console.log(data);
 
+            data = parser.discriminateParse(data);
+            console.log(data);
+
             socket.join(data.roomname);
 
             io.to(data.sid).emit("resAcceptInvite", {
@@ -92,6 +101,9 @@ module.exports = (io) => {
         });
 
         socket.on("reqRejectInvite", (data) => {
+            data = parser.discriminateParse(data);
+            console.log(data);
+
             io.to(data.sid).emit("resRejectInvite", {
                 message: "상대방이 초대를 거부하였습니다"
             });
@@ -99,6 +111,9 @@ module.exports = (io) => {
 
         socket.on("joinRoom", (data) => {
             console.log("소켓 : 입장 요청받음");
+            console.log(data);
+
+            data = parser.discriminateParse(data);
             console.log(data);
 
             socket.join(data.roomname);
@@ -110,6 +125,10 @@ module.exports = (io) => {
         socket.on("sendMessage", (data) => {
             console.log("소켓 : 채팅 전송 요청받음");
             console.log(data);
+
+            data = parser.discriminateParse(data);
+            console.log(data);
+
             console.log(io.sockets.adapter.rooms);
             io.to(data.roomname).emit("receiveMessage", {
                 contents: data.contents,
@@ -118,6 +137,10 @@ module.exports = (io) => {
         });
 
         socket.on("reqExitRoom", (data) => {
+
+            data = parser.discriminateParse(data);
+            console.log(data);
+            
             socket.leave(data.roomname);
 
             socket.emit("resExitRoom", {
