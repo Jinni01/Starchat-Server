@@ -12,13 +12,7 @@ module.exports = (io) => {
             console.log("소켓 : 온라인 연결 시도");
             console.log(data);
 
-            const data_string = JSON.stringify(data);
-            console.log(data_string);
-            const data_json = JSON.parse(data_string);
-            console.log(data_json);
-
-            //const data_json = JSON.parse(JSON.stringify(data));
-            console.log(data_json);
+            const data_json = (typeof(data) == string) ? JSON.parse(data) : data;
 
             connection.query("select nickname, sex, age, region, introduce, profile from user where email=?", [data_json.email], (err, result, fields) => {
                 if (err) {
