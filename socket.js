@@ -10,6 +10,7 @@ module.exports = (io) => {
 
         socket.on("reqOnline", (data) => {
             console.log("소켓 : 온라인 연결 시도");
+            console.log(data);
             const data_json = JSON.parse(JSON.stringify(data));
             console.log(data_json);
 
