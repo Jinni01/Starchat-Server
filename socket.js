@@ -10,21 +10,22 @@ module.exports = (io) => {
 
         socket.on("reqOnline", (data) => {
             console.log("소켓 : 온라인 연결 시도");
-            console.log(data);
+            const data_json = JSON.parse(JSON.stringify(data));
+            console.log(data_json);
 
-            connection.query("select nickname, sex, age, region, introduce, profile from user where email=?", [data.email], (err, result, fields) => {
+            connection.query("select nickname, sex, age, region, introduce, profile from user where email=?", [data_json.email], (err, result, fields) => {
                 if (err) {
                     console.log(err);
                 }
                 if (result && result.length != null) {
                     console.log(result);
 
-                    online_users_list.push(data.email);
+                    online_users_list.push(data_json.email);
                     console.log(online_users_list);
-                    online_users_data[data.email] = result[0];
+                    online_users_data[data_json.email] = result[0];
                     console.log(online_users_data);
 
-                    socket_ids[data.email] = socket.id;
+                    socket_ids[data_json.email] = socket.id;
                     console.log(socket_ids);
 
                     userName = result[0].nickname;
