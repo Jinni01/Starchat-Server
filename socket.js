@@ -12,8 +12,8 @@ module.exports = (io) => {
             console.log("소켓 : 온라인 연결 시도");
             console.log(data);
 
-            const data_stirng = JSON.stringify(data);
-            console.log(data_stirng);
+            const data_string = JSON.stringify(data);
+            console.log(data_string);
             const data_json = JSON.parse(data_string);
             console.log(data_json);
 
