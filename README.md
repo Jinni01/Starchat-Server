@@ -34,9 +34,9 @@
 > /user/signup
 >> Requiring Params
 
-    "userEmail" : "email" (String),
-    "userID" : "id" (String),
-    "userPW" : "pw" (String)
+    userEmail: "email" (String),
+    userID: "id" (String),
+    userPW: "pw" (String)
     
 >> Return Value
 
@@ -55,15 +55,15 @@
 > /user/create-profile
 >> Requiring Params
 
-    "userEmail": "email" (String),
-    "userID": "id" (String),
-    "userPW": "pw" (String),
-    "userNickname": "nickname" (String),
-    "userSex": "sex" (String),
-    "userAge": "age" (String),
-    "userRegion": "region" (String),
-    "userIntroduce": "introduce" (String),
-    "userProfile": "profile" (file)
+    userEmail: "email" (String),
+    userID: "id" (String),
+    userPW: "pw" (String),
+    userNickname: "nickname" (String),
+    userSex: "sex" (String),
+    userAge: "age" (String),
+    userRegion: "region" (String),
+    userIntroduce: "introduce" (String),
+    userProfile: "profile" (file)
     
 >> Return Value
 
@@ -80,8 +80,8 @@
 > /user/login
 >> Requiring Params 
 
-    "userID": "id" (String),
-    "userPW": "pw" (String)
+    userID: "id" (String),
+    userPW: "pw" (String)
 
 >> Return Value
 
@@ -89,15 +89,15 @@
     
         return HTTP 200, User Scheme
         {
-            "email": "email" (String)
-            "id": "id" (String),
-            "nickname": "nickname" (String),
-            "sex": "sex" (String),
-            "age": "age" (String),
-            "region": "region" (String),
-            "introduce": "introduce" (String),
-            "profile": "profile" (String),
-            "star": "star" (int UNSIGNED) 
+            email: "email" (String)
+            id: "id" (String),
+            nickname": "nickname" (String),
+            sex: "sex" (String),
+            age: "age" (String),
+            region: "region" (String),
+            introduce: "introduce" (String),
+            profile: "profile" (String),
+            star: "star" (int UNSIGNED) 
         }
         
      >>> Fail
@@ -158,7 +158,7 @@
 > <code>emit</code> reqOnline
 >> Requiring Params
 
-    "email": "userEmail"
+    email: "userEmail"
 
 > <code>on</code> resOnline, (data) 
 >> Return Value
@@ -176,7 +176,7 @@
 > <code>emit</code> reqOffline
 >> Requiring Params
 
-    "email": "userEmail"
+    email: "userEmail"
 
 > <code>on</code> resOffline, (data) 
 >> Return Value
@@ -226,8 +226,8 @@
 > <code>emit</code> reqInviteUser
 >> Requiring Params
 
-    "to": "otherUserEmail",
-    "from": "userEmail"
+    to: "otherUserEmail",
+    from: "userEmail"
 
 > <code>on</code> resInviteUser, (data) 
 >> Return Value
@@ -255,8 +255,8 @@
 > <code>emit</code> reqAcceptInvite
 >> Requiring Params
 
-    "sid": "(resInviteUser의)data.sid",
-    "roomname": room_id
+    sid: "(resInviteUser의)data.sid",
+    roomname: room_id
 
 
 > <code>on</code> resAcceptInvite, (data) 
@@ -284,7 +284,7 @@
 > <code>emit</code> reqRejectInvite
 >> Requiring Params
 
-    "sid": "(resInviteUser의)data.sid",
+    sid: "(resInviteUser의)data.sid",
 
 
 > <code>on</code> resRejectInvite, (data) 
@@ -303,7 +303,7 @@
 > <code>emit</code> joinRoom
 >> Requiring Params
 
-    "roomname": room_id
+    roomname: room_id
 
 
 #### 채팅 내 알림
@@ -324,9 +324,9 @@
 > <code>emit</code> sendMessage
 >> Requiring Params
 
-    "contents": "sendContents",
-    "roomname": room_id,
-    "from": "userNickname"
+    contents: "sendContents",
+    roomname: room_id,
+    from: "userNickname"
 
 * 채팅 받기 
 > <code>on</code> receiveMessage, (data) 
@@ -345,7 +345,7 @@
 > <code>emit</code> reqExitRoom
 >> Requiring Params
 
-    "roomname": room_id
+    roomname: room_id
 
 
 > <code>on</code> resExitRoom, (data) 
