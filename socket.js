@@ -17,6 +17,8 @@ module.exports = (io) => {
                     console.log(err);
                 }
                 if (result && result.length != null) {
+                    console.log(result);
+
                     online_users_list.push(data.email);
                     console.log(online_users_list);
                     online_users_data[data.email] = result[0];
