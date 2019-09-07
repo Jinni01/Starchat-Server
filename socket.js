@@ -13,7 +13,9 @@ module.exports = (io) => {
             console.log(data);
             console.log(typeof(data));
 
-            const data_json = (typeof(data) == String) ? JSON.parse(data) : data;
+            //const data_json = (typeof(data) == String) ? JSON.parse(data) : data;
+            const data_json = (typeof(data) == String) ? console.log("catch") : data;
+            console.log(data_json);
 
             connection.query("select nickname, sex, age, region, introduce, profile from user where email=?", [data_json.email], (err, result, fields) => {
                 if (err) {
