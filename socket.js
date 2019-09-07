@@ -11,7 +11,13 @@ module.exports = (io) => {
         socket.on("reqOnline", (data) => {
             console.log("소켓 : 온라인 연결 시도");
             console.log(data);
-            const data_json = JSON.parse(JSON.stringify(data));
+
+            const data_stirng = JSON.stringify(data);
+            console.log(data_stirng);
+            const data_json = JSON.parse(data_string);
+            console.log(data_json);
+
+            //const data_json = JSON.parse(JSON.stringify(data));
             console.log(data_json);
 
             connection.query("select nickname, sex, age, region, introduce, profile from user where email=?", [data_json.email], (err, result, fields) => {
