@@ -124,7 +124,7 @@ router.post("/create-profile", upload.single("userProfile"), (req, res) => {
     console.log("req.body => ");
     console.log(req.body);
 
-    const userIntroduce = req.body.userIntroduce == "" ? "자기소개 없음" : req.body.userIntroduce;
+    const userIntroduce = (req.body.userIntroduce == "" || req.body.userIntroduce == undefined) ? "자기소개 없음" : req.body.userIntroduce;
 
     console.log(userIntroduce);
 
