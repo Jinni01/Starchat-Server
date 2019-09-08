@@ -31,7 +31,7 @@ const upload = multer({
 });
 
 //login router
-router.post("/login_please", isAuthenticated, (req, res, next) => {
+router.post("/login", isAuthenticated, (req, res, next) => {
     passport.authenticate('local', (err, user) => {
         if (err) {
             return res.status(401).json({
