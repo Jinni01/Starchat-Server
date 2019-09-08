@@ -27,12 +27,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(flash());
 app.use(session({
     secret: '213jkdjsk21',
     resave: true,
     saveUninitialized: false
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passportConfig();
