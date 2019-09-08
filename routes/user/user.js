@@ -39,9 +39,7 @@ router.post("/login", isAuthenticated, passport.authenticate('local', {
 });
 
 router.get("/test", (req, res) =>{
-    return res.status(200).json({
-        message: req.flash("passport_error")[0]
-    });
+    console.log(req.flash());
 });
 
 router.get("/login-fail", (req, res) => {
