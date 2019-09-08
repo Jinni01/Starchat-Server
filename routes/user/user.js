@@ -119,11 +119,14 @@ router.post("/create-profile", upload.single("userProfile"), (req, res) => {
         userNickname,
         userSex,
         userAge,
-        userRegion,
-        userIntroduce
+        userRegion
     } = req.body;
     console.log("req.body => ");
     console.log(req.body);
+
+    const userIntroduce = req.body.userIntroduce == "" ? "자기소개 없음" : req.body.userIntroduce;
+
+    console.log(userIntroduce);
 
     const userProfile = req.file ? req.file.filename : "sample.png";
     const userSigndate = dateFormat(new Date(), "yyyy-mm-dd'T'HH:MM:ss");
