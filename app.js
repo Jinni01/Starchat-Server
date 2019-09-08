@@ -29,9 +29,8 @@ app.use(bodyParser.urlencoded({
 
 app.use(session({
     secret: '213jkdjsk21',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    resave: true,
+    saveUninitialized: false
 }));
 app.use(flash());
 app.use(passport.initialize());
