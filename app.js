@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(session({
     secret: '213jkdjsk21',
-    resave: true,
+    resave: false,
     saveUninitialized: false
 }));
 app.use(flash());
