@@ -4,13 +4,6 @@ const connection = require("./db/db_connection");
 const crypto = require('crypto');
 
 module.exports = () => {
-  passport.serializeUser((user, done) => {
-    done(null, user);
-  });
-
-  passport.deserializeUser((user, done) => {
-    done(null, user);
-  });
 
   passport.use(new LocalStrategy({
     usernameField: 'userID',
@@ -43,6 +36,7 @@ module.exports = () => {
               delete user.pw;
               delete user.signdate;
               delete user.salt;
+
               return done(null, user);
             }
           });
@@ -50,4 +44,16 @@ module.exports = () => {
       }
     });
   }));
+
+  passport.serializeUser((user, done) => {
+    console.log("* serial *");
+    console.log(user);
+    done(null, user);
+  });
+
+  passport.deserializeUser((user, done) => {
+    console.log("* deserial *");
+    console.log(user);
+    done(null, user);
+  });
 };

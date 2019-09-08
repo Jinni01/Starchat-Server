@@ -32,18 +32,35 @@ const upload = multer({
 
 //login router
 router.post("/login", isAuthenticated, (req, res, next) => {
-    passport.authenticate('local', (err, user) => {
+    passport.authenticate('local', (err, user, info) => {
         if (err) {
+            console.log(err);
             return res.status(401).json({
                 success: false,
                 message: err
             });
         } else {
-            return res.status(200).json(user);
+            req.login(user, err => {
+                if(err){
+                    console.log(err);
+                }
+                console.log(req.user);
+                return res.status(200).json(req.user);
+            })
         }
     })(req, res, next);
 });
 /*
+router.post("/login", isAuthenticated, passport.authenticate('local', {
+    failureRedirect: "/user/login-fail",
+    failureFlash: true
+}, (err, user) => {
+    
+}), (req, res) => {
+    console.log(req.user);
+    res.status(200).json(req.user);
+});
+
 router.get("/login-fail", (req, res) => {
     return res.status(401).json({
         success: false,
