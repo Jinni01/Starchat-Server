@@ -39,12 +39,14 @@ router.post("/login", isAuthenticated, passport.authenticate('local', {
 });
 
 router.get("/login-fail", (req, res) => {
-    const flash = req.flash("passport_error")[0];
-    console.log(flash);
-    return res.status(401).json({
-        success: false,
-        message: flash 
-    });
+    req.session.save(() => {
+        const flash = req.flash("passport_error")[0];
+        //console.log(flash);
+        return res.status(401).json({
+            success: false,
+            message: flash
+        });
+    })
 });
 
 router.post("/logout", (req, res) => {
