@@ -33,15 +33,18 @@ const upload = multer({
 //login router
 router.post("/login", isAuthenticated, passport.authenticate('local', {
     failureRedirect: "/user/login-fail",
+    badRequestMessage : 'Missing username or password.',
     failureFlash: true
 }), (req, res) => {
     res.status(200).json(req.user);
 });
 
 router.get("/login-fail", (req, res) => {
+    var flash = req.flash("error")[0];
+    console.log(flash);
     return res.status(401).json({
         success: false,
-        message: req.flash("error")[0]
+        message: flash 
     });
 });
 
