@@ -7,7 +7,7 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const passportConfig = require("./passport");
-const flash = require("connect-flash");
+//const flash = require("connect-flash");
 const bodyParser = require("body-parser");
 
 //*Region Router Components
@@ -32,7 +32,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-app.use(flash());
+//app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passportConfig();
