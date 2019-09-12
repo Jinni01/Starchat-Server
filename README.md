@@ -25,7 +25,8 @@
 ### 목차
 1. [Auth](#auth)
 2. [Chat](#chat)
-3. [TOS & PP](#tospp)
+3. [Star](#star)
+4. [TOS & PP](#tospp)
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴) <span id="auth"></span>
 * 로그인 방식 : 세션
@@ -46,8 +47,8 @@
         
     >>> Fail
     
-        return HTTP 400, { success: false, message: "이미 가입된 이메일입니다"}
-        return HTTP 400, { success: false, message: "이미 가입된 ID입니다"}
+        return HTTP 400, { success: false, message: "이미 가입된 이메일입니다" }
+        return HTTP 400, { success: false, message: "이미 가입된 ID입니다" }
 
 
 #### 유저 정보 등록
@@ -102,14 +103,8 @@
         
      >>> Fail
      
-        FailureRedirect "/user/login-fail"
-
-> /user/login-fail
->> Return Value
-
-    return HTTP 401, { success: false, message: "존재하지 않는 ID 입니다" }
-    return HTTP 401, { success: false, message: "잘못된 비밀번호입니다" }
-        
+        return HTTP 401, { success: false, message: "존재하지 않는 아이디입니다" }
+        return HTTP 401, { success: false, message: "잘못된 비밀번호입니다" }
 
 #### 로그아웃
 > /user/logout
@@ -360,6 +355,44 @@
         None
         
         
+### Star (별 충전, 사용) <span id="star"></span>
+
+#### 별 충전
+> /star/plus
+>> Requiring Params
+
+    amount: updateAmount
+    
+>> Return Value
+
+    >>> Success
+    
+        return HTTP 200, { success: true, message: "[updateAmount]개의 별을 충전했습니다. 남은 별 개수 : [afterAmount]" }
+        
+    >>> Fail
+    
+        return HTTP 204    
+        return HTTP 500, { success: false, message: "DB에러" }
+        
+        
+#### 별 사용
+> /star/minus
+>> Requiring Params
+
+    amount: updateAmount
+    
+>> Return Value
+
+    >>> Success
+    
+        return HTTP 200, { success: true, message: "[updateAmount]개의 별을 사용했습니다. 남은 별 개수 : [afterAmount]" }
+        
+    >>> Fail
+    
+        return HTTP 204    
+        return HTTP 500, { success: false, message: "DB에러" }
+        
+             
 ### TOS & PP (서비스 이용약관, 개인정보처리방침) <span id="tospp"></span>
 * 파싱용 페이지
 
