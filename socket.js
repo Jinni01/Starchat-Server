@@ -43,6 +43,7 @@ module.exports = (io) => {
         });
 
         socket.on("reqOffline", (data) => {
+            console.log("소켓 : 연결 해제 시도");
             data = parser.discriminateParse(data);
             console.log(data);
 

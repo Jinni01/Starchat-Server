@@ -41,7 +41,7 @@ router.post("/login", isAuthenticated, (req, res, next) => {
             });
         } else {
             req.login(user, err => {
-                if(err){
+                if (err) {
                     console.log(err);
                 }
                 console.log(req.user);
@@ -234,6 +234,119 @@ router.post("/leave", (req, res) => {
                 return res.sendStatus(204);
             }
         });
+    });
+});
+
+router.post("/star/plus", (req, res) => {
+    if (!req.user) {
+        return res.status(400).json({
+            success: false,
+            message: "로그인되어 있지 않습니다"
+        });
+    }
+
+    const amount = Number(req.body.amount);
+    console.log(amount);
+
+    const userEmail = req.user.email;
+    connection.query("select star from user where email = ?", [userEmail], (err, result, fields) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: "DB에러"
+            });
+        }
+        if (result && result.length != 0) {
+            console.log(result);
+            const star = Number(result[0].star);
+            console.log(star);
+
+            const after = star + amount;
+
+            connection.query("update user set star=? where email=?", [after, userEmail], (err, result, fields) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).json({
+                        success: false,
+                        message: "DB에러"
+                    });
+                }
+                if (result && result.length != 0) {
+                    console.log(result);
+                    const msg = amount + "개의 별을 충전했습니다. 남은 별 개수 : " + after;
+                    return res.status(200).json({
+                        success: true,
+                        message: msg
+                    })
+                } else {
+                    return res.sendStatus(204);
+                }
+            });
+
+        } else {
+            return res.sendStatus(204);
+        }
+    });
+});
+
+router.post("/star/minus", (req, res) => {
+    if (!req.user) {
+        return res.status(400).json({
+            success: false,
+            message: "로그인되어 있지 않습니다"
+        });
+    }
+
+    const amount = Number(req.body.amount);
+    console.log(amount);
+
+    const userEmail = req.user.email;
+    connection.query("select star from user where email = ?", [userEmail], (err, result, fields) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: "DB에러"
+            });
+        }
+        if (result && result.length != 0) {
+            console.log(result);
+            const star = Number(result[0].star);
+            console.log(star);
+
+            if (star <= 0) {
+                return res.status(400).json({
+                    success: false,
+                    message: "차감할 별이 없습니다"
+                });
+            } else {
+                const after = star - amount;
+
+                connection.query("update user set star=? where email=?", [after, userEmail], (err, result, fields) => {
+                    if (err) {
+                        console.log(err);
+                        return res.status(500).json({
+                            success: false,
+                            message: "DB에러"
+                        });
+                    }
+                    if (result && result.length != 0) {
+                        console.log(result);
+                        const msg = amount + "개의 별을 사용했습니다. 남은 별 개수 : " + after;
+                        return res.status(200).json({
+                            success: true,
+                            message: msg
+                        })
+                    } else {
+                        return res.sendStatus(204);
+                    }
+                });
+            }
+
+        } else {
+            return res.sendStatus(204);
+        }
     });
 });
 

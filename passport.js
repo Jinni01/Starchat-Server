@@ -9,8 +9,8 @@ module.exports = () => {
     usernameField: 'userID',
     passwordField: 'userPW',
     session: true,
-    passReqToCallback: true,
-  }, (req, id, pw, done) => {
+    passReqToCallback: false,
+  }, (id, pw, done) => {
     connection.query("select * from user where id = ?", [id], (err, result) => {
       console.log("result : ");
       console.log(result);
