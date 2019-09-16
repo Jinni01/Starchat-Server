@@ -239,8 +239,7 @@
     >>> Fail
     
         None
-        
-* 초대 실패        
+                
 > <code>on</code> resFailInviteUser, (data)
 >> Return Value
 
