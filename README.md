@@ -240,6 +240,12 @@
     
         None
         
+* 초대 실패        
+> <code>on</code> resFailInviteUser, (data)
+>> Return Value
+
+    >>> return { message: "상대방이 접속 중이 아닙니다" }
+        
 
 #### 초대 수락
 > 필요 작업
