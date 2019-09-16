@@ -200,6 +200,7 @@
             data: 
                 userEmail1: {
                     age: "userAge"
+                    email: "userEmail"
                     introduce: "userIntroduce"
                     nickname: "userNickname"
                     profile: "userProfile"
