@@ -81,10 +81,18 @@ module.exports = (io) => {
             data = parser.discriminateParse(data);
             console.log(data);
 
-            io.to(socket_ids[data.to]).emit("resInviteUser", {
-                from: data.from,
-                sid: socket_ids[data.from]
-            });
+            if(socket_ids[data.to]){
+                io.to(socket_ids[data.to]).emit("resInviteUser", {
+                    from: data.from,
+                    sid: socket_ids[data.from]
+                });
+            }
+            else{
+                socket.emit("resFailInviteUser", {
+                    message: "상대방이 접속 중이 아닙니다"
+                });
+            }
+
         });
 
         socket.on("reqAcceptInvite", (data) => {
