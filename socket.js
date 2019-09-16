@@ -17,7 +17,7 @@ module.exports = (io) => {
             data = parser.discriminateParse(data);
             console.log(data);
 
-            connection.query("select nickname, sex, age, region, introduce, profile from user where email=?", [data.email], (err, result, fields) => {
+            connection.query("select email, nickname, sex, age, region, introduce, profile from user where email=?", [data.email], (err, result, fields) => {
                 if (err) {
                     console.log(err);
                 }
