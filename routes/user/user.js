@@ -350,4 +350,24 @@ router.post("/star/minus", (req, res) => {
     });
 });
 
+router.post("/find", (req, res) => {
+    const userEmail = req.body.userEmail;
+
+    connection.query("select email, nickname, sex, age, region, introduce, profile from user where email=?",
+        [userEmail], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                    success: false,
+                    message: "DB에러"
+                });
+            }
+            if (result && result.length != 0) {
+                return res.status(200).json(result[0]);
+            } else {
+                return res.sendStatus(204);
+            }
+        });
+});
+
 module.exports = router;
