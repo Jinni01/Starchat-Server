@@ -5,6 +5,7 @@ module.exports = (io) => {
     var online_users_list = [];
     var online_users_data = {};
     var socket_ids = [];
+    var on_chat_users_list = [];
 
     io.sockets.on("connection", (socket) => {
         console.log("소켓 : 유저 접속");
@@ -12,7 +13,7 @@ module.exports = (io) => {
         socket.on("reqOnline", (data) => {
             console.log("소켓 : 온라인 연결 시도");
             console.log(data);
-            console.log(typeof(data));
+            console.log(typeof (data));
 
             data = parser.discriminateParse(data);
             console.log(data);
@@ -81,13 +82,20 @@ module.exports = (io) => {
             data = parser.discriminateParse(data);
             console.log(data);
 
-            if(socket_ids[data.to]){
-                io.to(socket_ids[data.to]).emit("resInviteUser", {
-                    from: data.from,
-                    sid: socket_ids[data.from]
-                });
-            }
-            else{
+            if (socket_ids[data.to]) {
+                if (on_chat_users_list.some((arrayValue)=>{
+                    return data.to === arrayValue
+                })) {
+                    socket.emit("resFailInviteUser", {
+                        message: "다른 유저와 채팅 중입니다"
+                    });
+                } else {
+                    io.to(socket_ids[data.to]).emit("resInviteUser", {
+                        from: data.from,
+                        sid: socket_ids[data.from]
+                    });
+                }
+            } else {
                 socket.emit("resFailInviteUser", {
                     message: "상대방이 접속 중이 아닙니다"
                 });
@@ -102,7 +110,10 @@ module.exports = (io) => {
             data = parser.discriminateParse(data);
             console.log(data);
 
-            socket.join(data.roomname);
+            var roomname = data.roomname;
+            socket.join(roomname);
+            on_chat_users_list.push(roomname.substring(roomname.indexOf("-") + 1));
+            console.log(on_chat_users_list);
 
             io.to(data.sid).emit("resAcceptInvite", {
                 roomname: data.roomname
@@ -125,7 +136,10 @@ module.exports = (io) => {
             data = parser.discriminateParse(data);
             console.log(data);
 
-            socket.join(data.roomname);
+            var roomname = data.roomname;
+            socket.join(roomname);
+            on_chat_users_list.push(roomname.substring(0, roomname.indexOf("-")));
+            console.log(on_chat_users_list);
             io.to(data.roomname).emit("notice", {
                 message: data.roomname + " 채팅방에 입장하였습니다.",
             });
@@ -149,7 +163,7 @@ module.exports = (io) => {
 
             data = parser.discriminateParse(data);
             console.log(data);
-            
+
             socket.leave(data.roomname);
 
             socket.emit("resExitRoom", {
