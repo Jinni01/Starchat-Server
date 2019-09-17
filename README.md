@@ -26,7 +26,8 @@
 1. [Auth](#auth)
 2. [Chat](#chat)
 3. [Star](#star)
-4. [TOS & PP](#tospp)
+4. [Find](#find)
+5. [TOS & PP](#tospp)
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴) <span id="auth"></span>
 * 로그인 방식 : 세션
@@ -35,7 +36,10 @@
 > /user/signup
 >> Requiring Params
 
-    userEmail: "email" (String),
+    
+    
+    
+    : "email" (String),
     userID: "id" (String),
     userPW: "pw" (String)
     
@@ -398,6 +402,34 @@
         return HTTP 204    
         return HTTP 500, { success: false, message: "DB에러" }
         
+
+### Find (유저 정보 조회) <span id="find"></span>
+> /find
+>> Requiring Params
+
+    userEmail: "email" (String)
+    
+>> Return Value
+
+    >>> Success
+    
+        return HTTP 200, User Scheme
+        {
+            email: "email" (String)
+            id: "id" (String),
+            nickname": "nickname" (String),
+            sex: "sex" (String),
+            age: "age" (String),
+            region: "region" (String),
+            introduce: "introduce" (String),
+            profile: "profile" (String),
+        }
+        
+    >>> Fail
+    
+        return HTTP 204,
+        return HTTP 500, { success: false, message: "DB에러" }
+
              
 ### TOS & PP (서비스 이용약관, 개인정보처리방침) <span id="tospp"></span>
 * 파싱용 페이지
