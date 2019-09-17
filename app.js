@@ -5,7 +5,7 @@ const socketEvents = require("./socket");
 const morgan = require("morgan"); //REST 로깅
 const path = require("path");
 const session = require("express-session");
-const cookie = require("cookie-parser");
+//const cookie = require("cookie-parser");
 const passport = require("passport");
 const passportConfig = require("./passport");
 //const flash = require("connect-flash");
@@ -28,14 +28,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(cookie('12kld@@!3'));
+//app.use(cookie('12kld@@!3'));
 app.use(session({
     secret: '12kld@@!3',
     resave: true,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 60 // 쿠키 유효기간 1시간
-    }
+    saveUninitialized: false
 }));
 //app.use(flash());
 app.use(passport.initialize());
