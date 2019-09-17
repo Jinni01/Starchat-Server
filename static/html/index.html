@@ -86,7 +86,8 @@
 
         $(".exit").click(() => {
             socket.emit("reqExitRoom", {
-                roomname: room_id
+                roomname: room_id,
+                email: $(".onlinebox").val()
             });
         });
 

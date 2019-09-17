@@ -164,6 +164,9 @@ module.exports = (io) => {
             data = parser.discriminateParse(data);
             console.log(data);
 
+            delete on_chat_users_list.splice(on_chat_users_list.indexOf(data.email), 1);
+            console.log(on_chat_users_list);
+
             socket.leave(data.roomname);
 
             socket.emit("resExitRoom", {
