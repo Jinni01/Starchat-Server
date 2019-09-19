@@ -80,28 +80,43 @@
     }
 
     .float-menu {
-        display: flex;
-        justify-content: space-around;
         position: fixed;
         bottom: 10px;
         left: 8px;
         right: 8px;
     }
 
-    .float-menu>.chatbox {
+    .float-menu>.one {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .float-menu>.one>.chatbox {
         width: 50vw;
+        height: 30px;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
 
-    .float-menu>.send {
+    .float-menu>.one>.send {
         width: 25vw;
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
 
-    .float-menu>.exit {
+    .float-menu>.one>.exit {
         width: 25vw;
+        font-size: 30px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .float-menu>.two>.filebox {
+        font-size: 30px;
+        height: 30px;
+        font-family: 'NanumSquare', sans-serif;
+    }
+
+    .float-menu>.two>.filebutton {
         font-size: 30px;
         font-family: 'NanumSquare', sans-serif;
     }
