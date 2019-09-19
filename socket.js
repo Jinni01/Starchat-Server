@@ -15,6 +15,7 @@ module.exports = (io) => {
             console.log(typeof (data));
 
             data = parser.discriminateParse(data);
+            console.log("=== request_data ===");
             console.log(data);
 
             connection.query("select email, nickname, sex, age, region, introduce, profile from user where email=?", [data.email], (err, result, fields) => {
@@ -48,6 +49,7 @@ module.exports = (io) => {
         socket.on("reqOffline", (data) => {
             console.log("소켓 : 연결 해제 시도");
             data = parser.discriminateParse(data);
+            console.log("=== request_data ===");
             console.log(data);
 
             delete online_users_list.splice(online_users_list.indexOf(data.email), 1);
@@ -81,6 +83,7 @@ module.exports = (io) => {
             console.log("소켓 : 유저 초대 요청받음")
 
             data = parser.discriminateParse(data);
+            console.log("=== request_data ===");
             console.log(data);
 
             if (socket_ids[data.to]) {
@@ -108,6 +111,7 @@ module.exports = (io) => {
             console.log("소켓 : 초대 수락 요청받음")
 
             data = parser.discriminateParse(data);
+            console.log("=== request_data ===");
             console.log(data);
 
             var roomname = data.roomname;
@@ -123,6 +127,7 @@ module.exports = (io) => {
 
         socket.on("reqRejectInvite", (data) => {
             data = parser.discriminateParse(data);
+            console.log("=== request_data ===");
             console.log(data);
 
             io.to(data.sid).emit("resRejectInvite", {
@@ -134,6 +139,7 @@ module.exports = (io) => {
             console.log("소켓 : 입장 요청받음");
 
             data = parser.discriminateParse(data);
+            console.log("=== request_data ===");
             console.log(data);
 
             var roomname = data.roomname;
@@ -150,9 +156,9 @@ module.exports = (io) => {
             console.log("소켓 : 채팅 전송 요청받음");
 
             data = parser.discriminateParse(data);
+            console.log("=== request_data ===");
             console.log(data);
 
-            console.log(io.sockets.adapter.rooms);
             io.to(data.roomname).emit("receiveMessage", {
                 contents: data.contents,
                 from: data.from
@@ -160,15 +166,19 @@ module.exports = (io) => {
         });
 
         socket.on("reqExitRoom", (data) => {
+            console.log("소켓 : 채팅방 나가기 요청받음")
 
             data = parser.discriminateParse(data);
+            console.log("=== request_data ===");
             console.log(data);
 
             delete on_chat_users_list.splice(on_chat_users_list.indexOf(data.email), 1);
+            console.log("=== on_chat_users_list ===");
             console.log(on_chat_users_list);
 
             socket.leave(data.roomname);
 
+            console.log(io.sockets.adapter.rooms);
             socket.emit("resExitRoom", {
                 message: "채팅방에서 나왔습니다"
             });
