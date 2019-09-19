@@ -404,7 +404,7 @@
         
 
 ### Find (유저 정보 조회) <span id="find"></span>
-> /find
+> /user/find
 >> Requiring Params
 
     userEmail: "email" (String)
