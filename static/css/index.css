@@ -115,14 +115,9 @@
         justify-content: space-around;
     }
 
-    .float-menu>.two>.filebox {
-        font-size: 30px;
-        height: 30px;
-        font-family: 'NanumSquare', sans-serif;
-    }
-
     .float-menu>.two>.filebutton {
         font-size: 30px;
+        width: 100vw;
         font-family: 'NanumSquare', sans-serif;
     }
 
@@ -269,17 +264,9 @@
         justify-content: space-around;
     }
 
-    .float-menu>.two>.filebox {
-        font-size: 15px;
-        width: 75vw;
-        height: 30px;
-        font-family: 'NanumSquare', sans-serif;
-        border: 1px solid gray;
-    }
-
     .float-menu>.two>.filebutton {
         font-size: 15px;
-        width: 25vw;
+        width: 100vw;
         font-family: 'NanumSquare', sans-serif;
     }
 
