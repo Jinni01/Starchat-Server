@@ -12,7 +12,6 @@ module.exports = (io) => {
 
         socket.on("reqOnline", (data) => {
             console.log("소켓 : 온라인 연결 시도");
-            console.log(data);
             console.log(typeof (data));
 
             data = parser.discriminateParse(data);
@@ -26,11 +25,14 @@ module.exports = (io) => {
                     console.log(result);
 
                     online_users_list.push(data.email);
+                    console.log("=== online_users_list ===");
                     console.log(online_users_list);
                     online_users_data[data.email] = result[0];
+                    console.log("=== online_users_data ===");
                     console.log(online_users_data);
 
                     socket_ids[data.email] = socket.id;
+                    console.log("=== socket_ids ===");
                     console.log(socket_ids);
 
                     userName = result[0].nickname;
@@ -52,11 +54,11 @@ module.exports = (io) => {
             delete online_users_data[data.email];
             delete socket_ids[data.email];
 
-            console.log("list");
+            console.log("=== online_users_list ===");
             console.log(online_users_list);
-            console.log("data");
+            console.log("=== online_users_data ===");
             console.log(online_users_data);
-            console.log("s_ids");
+            console.log("=== socket_ids ===");
             console.log(socket_ids);
 
             socket.emit("resOffline", {
@@ -111,6 +113,7 @@ module.exports = (io) => {
             var roomname = data.roomname;
             socket.join(roomname);
             on_chat_users_list.push(roomname.substring(roomname.indexOf("-") + 1));
+            console.log("=== on_chat_users_list ===");
             console.log(on_chat_users_list);
 
             io.to(data.sid).emit("resAcceptInvite", {
@@ -136,6 +139,7 @@ module.exports = (io) => {
             var roomname = data.roomname;
             socket.join(roomname);
             on_chat_users_list.push(roomname.substring(0, roomname.indexOf("-")));
+            console.log("=== on_chat_users_list ===");
             console.log(on_chat_users_list);
             io.to(data.roomname).emit("notice", {
                 message: data.roomname + " 채팅방에 입장하였습니다.",
