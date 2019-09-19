@@ -77,7 +77,6 @@ module.exports = (io) => {
 
         socket.on("reqInviteUser", (data) => {
             console.log("소켓 : 유저 초대 요청받음")
-            console.log(data);
 
             data = parser.discriminateParse(data);
             console.log(data);
@@ -105,7 +104,6 @@ module.exports = (io) => {
 
         socket.on("reqAcceptInvite", (data) => {
             console.log("소켓 : 초대 수락 요청받음")
-            console.log(data);
 
             data = parser.discriminateParse(data);
             console.log(data);
@@ -131,7 +129,6 @@ module.exports = (io) => {
 
         socket.on("joinRoom", (data) => {
             console.log("소켓 : 입장 요청받음");
-            console.log(data);
 
             data = parser.discriminateParse(data);
             console.log(data);
@@ -147,7 +144,6 @@ module.exports = (io) => {
 
         socket.on("sendMessage", (data) => {
             console.log("소켓 : 채팅 전송 요청받음");
-            console.log(data);
 
             data = parser.discriminateParse(data);
             console.log(data);
