@@ -1,5 +1,8 @@
 const connection = require("./db/db_connection");
 const parser = require("./JsonParser");
+const ss = require("socket.io-stream");
+const fs = require("fs");
+const path = require("path");
 
 module.exports = (io) => {
     var online_users_list = [];
@@ -163,6 +166,10 @@ module.exports = (io) => {
                 contents: data.contents,
                 from: data.from
             });
+        });
+
+        ss(socket).on("sendFile", (stream, data) => {
+            const fileName = path.basename(data.name);
         });
 
         socket.on("reqExitRoom", (data) => {

@@ -2,8 +2,9 @@
 
 <head>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io-stream.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
+    <script src=""></script>
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
 
@@ -37,9 +38,15 @@
     </div>
 
     <div class="float-menu">
-        <input type="text" class="chatbox" />
-        <button class="send">전송</button>
-        <button class="exit">나가기</button>
+        <div class="two">
+            <input type="file" class="filebox" />
+            <button class="filebutton">파일전송</button>
+        </div>
+        <div class="one">
+            <input type="text" class="chatbox" />
+            <button class="send">전송</button>
+            <button class="exit">나가기</button>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -78,8 +85,7 @@
                     roomname: room_id,
                     from: chat_name
                 });
-            }
-            else{
+            } else {
                 alert("내용을 입력해주세요");
             }
         });
@@ -136,7 +142,7 @@
             }
         });
 
-        socket.on("resFailInviteUser", (data) =>{
+        socket.on("resFailInviteUser", (data) => {
             alert(data.message);
         });
 
