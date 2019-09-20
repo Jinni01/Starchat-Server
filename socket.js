@@ -173,8 +173,11 @@ module.exports = (io) => {
             console.log("=== request_data ===");
             console.log(data);
 
+            var img = new Image();
+            img.src = 'data:image/jpeg;base64,' + data.contents
+
             io.to(data.roomname).emit("receiveImage", {
-                contents: data.contents,
+                contents: img,
                 from: data.from
             });
         });
