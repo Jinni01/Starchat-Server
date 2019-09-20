@@ -345,7 +345,27 @@
     
         None
         
+* 이미지 보내기
+> <code>emit</code> sendImage
+>> Requiring Params
+
+    contents: "sendContents",
+    roomname: room_id,
+    from: "userNickname"
+
+*  받기 
+> <code>on</code> receiveImage, (data) 
+>> Return Value
+
+    >>> Success
+    
+        return { contents: "receivedContents", from: "from-Nickname" }
         
+    >>> Fail
+    
+        None
+
+
 #### 채팅방 나가기 
 > <code>emit</code> reqExitRoom
 >> Requiring Params
