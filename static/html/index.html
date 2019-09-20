@@ -176,6 +176,10 @@
             }
         });
 
+        socket.on("receiveImage", (data)=>{
+            console.log(data);
+        });
+
         socket.on("resExitRoom", (data) => {
             console.log(data.message);
             alert("채팅방에서 나왔습니다");

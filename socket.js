@@ -89,9 +89,9 @@ module.exports = (io) => {
             console.log(data);
 
             if (socket_ids[data.to]) {
-                if (on_chat_users_list.some((arrayValue)=>{
-                    return data.to === arrayValue
-                })) {
+                if (on_chat_users_list.some((arrayValue) => {
+                        return data.to === arrayValue
+                    })) {
                     socket.emit("resFailInviteUser", {
                         message: "다른 유저와 채팅 중입니다"
                     });
@@ -155,13 +155,22 @@ module.exports = (io) => {
         });
 
         socket.on("sendMessage", (data) => {
-            console.log("소켓 : 채팅 전송 요청받음");
+            console.log("소켓 : 채팅(텍스트) 전송 요청받음");
 
             data = parser.discriminateParse(data);
             console.log("=== request_data ===");
             console.log(data);
 
             io.to(data.roomname).emit("receiveMessage", {
+                contents: data.contents,
+                from: data.from
+            });
+        });
+
+        socket.on("sendImage", (data) => {
+            console.log("소켓 : 채팅(이미지) 전송 요청받음");
+
+            io.to(data.roomname).emit("receiveImage", {
                 contents: data.contents,
                 from: data.from
             });
