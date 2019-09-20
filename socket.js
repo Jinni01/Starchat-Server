@@ -170,6 +170,8 @@ module.exports = (io) => {
 
         socket.on("sendImage", (data) => {
             console.log("소켓 : 채팅(이미지) 전송 요청받음");
+            console.log("=== request_data ===");
+            console.log(data);
 
             io.to(data.roomname).emit("receiveImage", {
                 contents: data.contents,
