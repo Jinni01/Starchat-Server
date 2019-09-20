@@ -353,7 +353,7 @@
     roomname: room_id,
     from: "userNickname"
 
-* 채팅 받기 
+*  받기 
 > <code>on</code> receiveImage, (data) 
 >> Return Value
 
