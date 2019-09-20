@@ -128,6 +128,7 @@ module.exports = (io) => {
         });
 
         socket.on("reqRejectInvite", (data) => {
+            console.log("소켓 : 초대 거부 요청받음");
             data = parser.discriminateParse(data);
             console.log("=== request_data ===");
             console.log(data);
