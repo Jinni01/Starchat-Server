@@ -38,7 +38,7 @@
 
     <div class="float-menu">
         <div class="two">
-            <button class="filebutton">이미지 전송</button>
+            <input type="file" class="filebox">
         </div>
         <div class="one">
             <input type="text" class="chatbox" />
@@ -86,6 +86,21 @@
             } else {
                 alert("내용을 입력해주세요");
             }
+        });
+
+        $(".filebox").change(function (e) {
+            var file = e.target.files[0];
+
+            var reader = new FileReader();
+            reader.onload = (e) => {
+                socket.emit("sendImage", {
+                    contents: e.target.result,
+                    roomname: room_id,
+                    from: chat_name
+                });
+            }
+            reader.readAsDataURL(file);
+
         });
 
         $(".exit").click(() => {
@@ -178,6 +193,20 @@
 
         socket.on("receiveImage", (data) => {
             console.log(data);
+
+            if ($(".onlinebox").val() == data.from) {
+                $(".chatlog>.chat").append("<div class=to>" + "<img class=data width=300px height=300px>" + "</div>");
+                $(".chatlog>.chat>.to>.data").attr( "src", data.contents );
+                //document.body.scrollTop = document.body.scrollHeight;
+                $(document).scrollTop($(document).height());
+
+            } else {
+                $(".chatlog>.chat").append("<div class=from>" + "<img class=data width=300px height=300px>" + "</div>");
+                $(".chatlog>.chat>.from>.data").attr( "src", data.contents );
+                //document.body.scrollTop = document.body.scrollHeight;
+                $(document).scrollTop($(document).height());
+
+            }
         });
 
         socket.on("resExitRoom", (data) => {

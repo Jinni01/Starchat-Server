@@ -173,7 +173,8 @@ module.exports = (io) => {
             console.log("=== request_data ===");
             console.log(data);
 
-            var data_url = 'data:image/jpeg;base64,' + data.contents
+            //var data_url = 'data:image/jpeg;base64,' + data.contents
+            var data_url = data.contents.indexOf("data") == -1 ? 'data:image/jpeg;base64,' + data.contents : data.contents;
 
             io.to(data.roomname).emit("receiveImage", {
                 contents: data_url,

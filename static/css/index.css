@@ -112,10 +112,10 @@
 
     .float-menu>.two {
         display: flex;
-        justify-content: space-around;
+        justify-content: left;
     }
 
-    .float-menu>.two>.filebutton {
+    .float-menu>.two>.filebox {
         font-size: 30px;
         width: 100vw;
         font-family: 'NanumSquare', sans-serif;
@@ -260,18 +260,18 @@
     }
 
     .float-menu>.two {
-        display: flex;
+        display: left;
         justify-content: space-around;
     }
 
-    .float-menu>.two>.filebutton {
+    .float-menu>.two>.filebox {
         font-size: 15px;
         width: 100vw;
         font-family: 'NanumSquare', sans-serif;
     }
 
     .chatlog {
-        margin-bottom: 46px;
+        margin-bottom: 66px;
         overflow: scroll;
     }
 
