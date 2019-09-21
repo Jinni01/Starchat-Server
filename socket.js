@@ -170,11 +170,13 @@ module.exports = (io) => {
 
         socket.on("sendImage", (data) => {
             console.log("소켓 : 채팅(이미지) 전송 요청받음");
+
+            data = parser.discriminateParse(data);
             console.log("=== request_data ===");
             console.log(data);
-
             //var data_url = 'data:image/jpeg;base64,' + data.contents
             var data_url = data.contents.indexOf("data") == -1 ? 'data:image/jpeg;base64,' + data.contents : data.contents;
+            console.log(data.contents.indexOf("data"));
 
             io.to(data.roomname).emit("receiveImage", {
                 contents: data_url,
