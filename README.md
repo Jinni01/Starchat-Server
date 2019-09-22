@@ -385,8 +385,19 @@
     >>> Fail
     
         None
+
+> <code>on</code> resOtherExitRoom, (data) 
+>> Return Value
+
+    >>> Success
+    
+        return { message: "상대방이 채팅방에서 나갔습니다" }
         
-        
+    >>> Fail
+    
+        None
+
+         
 ### Star (별 충전, 사용) <span id="star"></span>
 
 #### 별 충전
