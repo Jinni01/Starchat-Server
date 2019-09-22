@@ -371,6 +371,8 @@
 >> Requiring Params
 
     roomname: room_id
+    email: "userEmail"
+    other: "otherUserEmail"
 
 
 > <code>on</code> resExitRoom, (data) 
