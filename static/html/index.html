@@ -49,8 +49,10 @@
 
     <script type="text/javascript">
         var socket = io.connect('http://15.164.126.18');
+        //var socket = io.connect('http://localhost');
         var room_id;
         var chat_name;
+        var other;
 
         $(".onlinebutton").click(() => {
             socket.emit("reqOnline", {
@@ -106,7 +108,8 @@
         $(".exit").click(() => {
             socket.emit("reqExitRoom", {
                 roomname: room_id,
-                email: $(".onlinebox").val()
+                email: $(".onlinebox").val(),
+                other: other
             });
         });
 
@@ -144,6 +147,7 @@
 
             if (confirm("수락?") == true) {
                 room_id = data.from + "-" + $(".onlinebox").val();
+                other = data.from;
                 socket.emit("reqAcceptInvite", {
                     sid: data.sid,
                     roomname: room_id
@@ -163,6 +167,7 @@
             console.log("클라이언트 : 초대 요청 바인딩");
             console.log(data);
             room_id = data.roomname
+            other = room_id.substring(room_id.indexOf("-") + 1);
             socket.emit("joinRoom", {
                 roomname: room_id
             });
@@ -213,7 +218,12 @@
 
         socket.on("resExitRoom", (data) => {
             console.log(data.message);
-            alert("채팅방에서 나왔습니다");
+            alert(data.message);
+        });
+
+        socket.on("resOtherExitRoom", (data) => {
+            console.log(data.message);
+            alert(data.message);
         });
     </script>
 </body>

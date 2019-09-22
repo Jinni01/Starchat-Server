@@ -198,6 +198,10 @@ module.exports = (io) => {
             socket.emit("resExitRoom", {
                 message: "채팅방에서 나왔습니다"
             });
+
+            io.to(socket_ids[data.other]).emit("resOtherExitRoom", {
+                message: "상대방이 채팅방에서 나갔습니다"
+            });
         });
 
         socket.on("disconnect", () => {
