@@ -3,7 +3,7 @@
 }
 
 html, body{
-    height: 100vh;
+    height: 96vh;
 }
 
 .box-outline {
@@ -12,7 +12,7 @@ html, body{
     justify-content: center;
     align-items: center;
 
-    height: 100vh;
+    height: 100%;
 }
 
 .box-outline>.box-logo>.img-logo {
