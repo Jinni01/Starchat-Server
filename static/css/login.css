@@ -40,6 +40,7 @@ body {
     width: 50vw;
     height: 10vw;
     font-size: 12px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
     margin-top: 3px;
     border: 1px solid #ffd52d;
@@ -72,10 +73,6 @@ body {
     border: none;
     color: white;
     background-color: #ffd52d;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
 }
 
 .box-outline>.box-login>.box-submit>.button-login:active {
