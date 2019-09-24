@@ -13,6 +13,7 @@ const bodyParser = require("body-parser");
 
 //*Region Router Components
 const userRouter = require("./routes/user/user");
+const adminRouter = require("./routes/admin/admin");
 //*EndRegion
 
 const app = express();
@@ -46,6 +47,7 @@ app.use("/profileImage", express.static(path.join(__dirname, "routes/user/profil
 
 //*Region Router
 app.use("/user", userRouter);
+app.use("/admin", adminRouter);
 //*EndRegion
 
 /*
@@ -55,15 +57,15 @@ app.use((req, res, next) => {
 }); 
 */ // Custom Middleware
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "static/html/index.html"));
+    res.sendFile(path.join(__dirname, "static/html/test.html"));
 });
 
 app.get("/privacypolicy", (req, res) => {
-    res.sendFile(path.join(__dirname, "static/html/privacypolicy.html"));
+    res.sendFile(path.join(__dirname, "static/html/etc/privacypolicy.html"));
 });
 
 app.get("/tos", (req, res) => {
-    res.sendFile(path.join(__dirname, "static/html/tos.html"));
+    res.sendFile(path.join(__dirname, "static/html/etc/tos.html"));
 });
 
 app.use((req, res, next) => {
