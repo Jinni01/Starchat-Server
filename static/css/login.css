@@ -19,7 +19,7 @@
 .box-outline>.box-login>.box-id>.input-id {
     width: 50vw;
     height: 10vw;
-    font-size: 20px;
+    font-size: 12px;
 
     border: 1px solid #ffd52d;
     border-radius: 0px;
@@ -29,7 +29,7 @@
 .box-outline>.box-login>.box-pw>.input-pw {
     width: 50vw;
     height: 10vw;
-    font-size: 20px;
+    font-size: 12px;
 
     margin-top: 3px;
     border: 1px solid #ffd52d;
@@ -37,8 +37,13 @@
     -webkit-appearance: none;
 }
 
+.box-outline>.box-login>.box-submit{
+    display: flex;
+    justify-content: center;
+}
+
 .box-outline>.box-login>.box-submit>.button-login {
-    width: 50vw;
+    width: 100%;
     height: 10vw;
     font-size: 20px;
 
