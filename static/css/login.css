@@ -58,6 +58,8 @@ html, body{
     background-color: #ffd52d;
 
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .box-outline>.box-login>.box-submit>.button-login:active {
