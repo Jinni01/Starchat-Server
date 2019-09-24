@@ -27,6 +27,9 @@ html, body{
 
     border: 1px solid #ffd52d;
     border-radius: 0px;
+
+    padding: 8px;
+
     -webkit-appearance: none;
 }
 
@@ -38,6 +41,9 @@ html, body{
     margin-top: 3px;
     border: 1px solid #ffd52d;
     border-radius: 0px;
+
+    padding: 8px;
+
     -webkit-appearance: none;
 }
 
@@ -63,12 +69,6 @@ html, body{
 }
 
 .box-outline>.box-login>.box-submit>.button-login:active {
-    background-color: white;
-    border: 1px solid #ffd52d;
-    color: #ffd52d;
-}
-
-.box-outline>.box-login>.box-submit>.button-login:hover {
     background-color: white;
     border: 1px solid #ffd52d;
     color: #ffd52d;
