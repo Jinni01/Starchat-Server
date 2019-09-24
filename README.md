@@ -17,7 +17,7 @@
 | introduce | varchar(200) | YES |  | 소개 |
 | profile | varchar(100) | YES |  | 프로필 이미지 서버 저장 경로 |
 | star | int(10) UNSIGNED | NO |  | 소유한 별 개수 |
-| signdate | varchar(30) | NO |  | 회원 가입 일시 |
+| signdate | datetime | NO |  | 회원 가입 일시 |
 | salt | varchar(100) | NO |  | 회원 가입시 내부적으로 저장되는 암호화 키 |
 | type | varchar(10) | NO | | 일반 유저와 어드민 구분 | 
 
