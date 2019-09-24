@@ -31,6 +31,7 @@ html, body{
     padding: 8px;
 
     -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .box-outline>.box-login>.box-pw>.input-pw {
@@ -45,6 +46,7 @@ html, body{
     padding: 8px;
 
     -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .box-outline>.box-login>.box-submit{
@@ -68,7 +70,7 @@ html, body{
     appearance: none;
 }
 
-.box-outline>.box-login>.box-submit>.button-login:active {
+.box-outline>.box-login>.box-submit>.button-login:a {
     background-color: white;
     border: 1px solid #ffd52d;
     color: #ffd52d;
