@@ -2,7 +2,8 @@
     font-family: 'NanumSquare', sans-serif;
 }
 
-html, body{
+html,
+body {
     height: 86vh;
 }
 
@@ -33,6 +34,10 @@ html, body{
     -webkit-appearance: none;
 }
 
+.box-outline>.box-login>.box-id>.input-id:focus {
+    outline: 2px solid #ffd52d;
+}
+
 .box-outline>.box-login>.box-pw>.input-pw {
     width: 50vw;
     height: 10vw;
@@ -47,9 +52,13 @@ html, body{
     -webkit-appearance: none;
 }
 
-.box-outline>.box-login>.box-submit{
+.box-outline>.box-login>.box-submit {
     display: flex;
     justify-content: center;
+}
+
+.box-outline>.box-login>.box-pw>.input-pw:focus {
+    outline: 2px solid #ffd52d;
 }
 
 .box-outline>.box-login>.box-submit>.button-login {
