@@ -62,8 +62,10 @@ body {
 }
 
 .box-outline>.box-login>.box-msg>.text-msg{
-    font-size: 10px;
+    font-size: 12px;
     text-align: right;
+    color: red;
+    height: 12px;
 }
 
 .box-outline>.box-login>.box-submit>.button-login {
