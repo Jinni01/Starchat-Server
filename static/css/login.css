@@ -30,8 +30,6 @@ body {
     border-radius: 0px;
 
     padding: 8px;
-
-    -webkit-appearance: none;
 }
 
 .box-outline>.box-login>.box-id>.input-id:focus {
@@ -48,8 +46,6 @@ body {
     border-radius: 0px;
 
     padding: 8px;
-
-    -webkit-appearance: none;
 }
 
 .box-outline>.box-login>.box-submit {
