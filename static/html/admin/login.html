@@ -46,7 +46,15 @@
             } else if (pw == "" || pw == undefined) {
                 $(".text-msg").text("비밀번호를 입력하세요");
             } else {
-                
+                $.ajax({
+                   url: "http://15.164.126.18/admin/login",
+                   data: { userID: id, userPW: pw },
+                   method: "POST",
+                   dataType: "json" 
+                })
+                .done((json) => {
+                    alert(json);
+                });
             }
 
         });

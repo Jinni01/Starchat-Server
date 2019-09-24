@@ -1,6 +1,7 @@
 const router = require("express").Router();
-var fs = require("fs");
-var path = require("path")
+const fs = require("fs");
+const path = require("path")
+const passport = require("passport");
 
 const isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
