@@ -19,6 +19,7 @@
 | star | int(10) UNSIGNED | NO |  | 소유한 별 개수 |
 | signdate | datetime | NO |  | 회원 가입 일시 |
 | salt | varchar(100) | NO |  | 회원 가입시 내부적으로 저장되는 암호화 키 |
+| type | varchar(10) | NO | | 일반 유저와 어드민 구분 | 
 
 ## API Document
 
