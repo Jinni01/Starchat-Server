@@ -157,6 +157,8 @@ router.post("/create-profile", upload.single("userProfile"), (req, res) => {
     let userPW_incrypted = undefined;
     let userSalt = undefined;
 
+    const userType = "user";
+
     crypto.randomBytes(64, (err, buf) => {
         userSalt = buf.toString("base64");
         console.log("userSalt => " + userSalt);
@@ -166,7 +168,7 @@ router.post("/create-profile", upload.single("userProfile"), (req, res) => {
             console.log("userPW_incrypted => " + userPW_incrypted);
 
             connection.query(
-                "insert into user values(?,?,?,?,?,?,?,?,?,0,?,?)",
+                "insert into user values(?,?,?,?,?,?,?,?,?,0,?,?,?)",
                 [
                     userEmail,
                     userID,
@@ -178,7 +180,8 @@ router.post("/create-profile", upload.single("userProfile"), (req, res) => {
                     userIntroduce,
                     userProfile,
                     userSigndate,
-                    userSalt
+                    userSalt,
+                    userType
                 ],
                 (err, result, fields) => {
                     if (err) {
