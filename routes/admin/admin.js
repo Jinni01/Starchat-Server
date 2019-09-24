@@ -1,14 +1,15 @@
 const router = require("express").Router();
+var fs = require("fs");
+var path = require("path")
 
 const isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
-        if(req.user.type == 'admin'){
+        if (req.user.type == 'admin') {
             return res.status(400).json({
                 success: false,
                 message: "이미 로그인되어 있습니다"
             });
-        }
-        else{
+        } else {
             return res.status(401).json({
                 success: false,
                 message: "관리자 권한이 없는 계정입니다"
@@ -18,8 +19,22 @@ const isAuthenticated = (req, res, next) => {
     next();
 };
 
-router.get("/", (req,res)=>{
-    return res.status(200).json({ test : "test"});
+router.get("/", (req, res) => {
+
+    fs.readFile(path.join("static/html/admin/login.html"), (err, data) => {
+        if (err) {
+            return res.status(500).json({
+                message: "페이지를 로딩하는 동안 오류가 발생하였습니다",
+                err: err
+            });
+        } else {
+            res.writeHead(200, {
+                'Content-Type': 'text/html'
+            });
+            res.end(data);
+        }
+
+    });
 });
 
 //login router
