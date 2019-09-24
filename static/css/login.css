@@ -66,6 +66,10 @@ html, body{
     background-color: white;
     border: 1px solid #ffd52d;
     color: #ffd52d;
+}
 
-    -webkit-tap-highlight-color: cadetblue;
+.box-outline>.box-login>.box-submit>.button-login:hover {
+    background-color: white;
+    border: 1px solid #ffd52d;
+    color: #ffd52d;
 }
