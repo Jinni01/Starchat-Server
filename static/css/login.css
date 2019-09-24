@@ -22,6 +22,7 @@
     font-size: 20px;
 
     border: 1px solid #ffd52d;
+    border-radius: 0px;
     -webkit-appearance: none;
 }
 
@@ -30,12 +31,14 @@
     height: 10vw;
     font-size: 20px;
 
+    margin-top: 3px;
     border: 1px solid #ffd52d;
+    border-radius: 0px;
     -webkit-appearance: none;
 }
 
 .box-outline>.box-login>.box-submit>.button-login {
-    width: 51vw;
+    width: 50vw;
     height: 10vw;
     font-size: 20px;
 
@@ -48,7 +51,7 @@
     -webkit-appearance: none;
 }
 
-.box-outline>.box-login>.box-submit>.button-login:hover {
+.box-outline>.box-login>.box-submit>.button-login:active {
     background-color: white;
     border: 1px solid #ffd52d;
     color: #ffd52d;
