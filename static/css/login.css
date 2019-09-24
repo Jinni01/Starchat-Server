@@ -5,3 +5,23 @@
 
     height: 100vw;
 }
+
+.box-outline>.box-logo>.img-logo {
+    width: 50vw;
+    height: 50vw;
+}
+
+.box-outline>.box-login>.box-id>.input-id{
+    width: 50vw;
+    height: 10vw;
+}
+
+.box-outline>.box-login>.box-pw>.input-pw{
+    width: 50vw;
+    height: 10vw;
+}
+
+.box-outline>.box-login>.box-submit>.button-login {
+    width: 50vw;
+    height: 10vw;
+}
