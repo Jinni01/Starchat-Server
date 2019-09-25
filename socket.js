@@ -194,14 +194,21 @@ module.exports = (io) => {
 
             socket.leave(data.roomname);
 
+            console.log("=== socket_rooms ===");
             console.log(io.sockets.adapter.rooms);
             socket.emit("resExitRoom", {
                 message: "채팅방에서 나왔습니다"
             });
 
+            console.log(data);
+            io.to(data.roomname).emit("notice", {
+                message: data.nickname + "님이 채팅방에서 나갔습니다",
+            });
+            /*
             io.to(socket_ids[data.other]).emit("resOtherExitRoom", {
                 message: "상대방이 채팅방에서 나갔습니다"
             });
+            */ //deprecated
         });
 
         socket.on("disconnect", () => {

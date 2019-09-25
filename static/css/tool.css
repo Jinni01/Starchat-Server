@@ -59,7 +59,7 @@ body {
     font-size: 10px;
     font-family: 'NanumSquare', sans-serif;
     border-collapse: collapse;
-    border: 1px solid black;
+    border: none;
     width: 100%;
     
     display: none;
@@ -69,15 +69,41 @@ body {
     font-size: 12px;
     font-family: 'NanumSquare', sans-serif;
     border-collapse: collapse;
-    border: 1px solid black;
+    border: none;
     width: 100%;
 
     display: table;
 }
 
-.box-outline>.box-contents>.table-list td {
-    border: 1px solid black;
-    white-space: nowrap;
+.box-outline>.box-contents>.table-list tr:first-child>td {
+    background-color: black;
+    color:white;
+    text-align: center;
+}
 
+.box-outline>.box-contents>.table-list tr:first-child>td:nth-child(2n) {
+    background-color: black;
+    color:white;
+    text-align: center;
+
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.box-outline>.box-contents>.table-list td {
+    border: none;
+    white-space: nowrap;
     height: 18px;
+    
+    background-color: whitesmoke;
+
+    padding: 5px;
+}
+
+.box-outline>.box-contents>.table-list td:nth-child(2n + 1) {
+    border: none;
+    white-space: nowrap;
+    height: 18px;
+    
+    background-color: lightgray;
 }

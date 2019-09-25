@@ -25,8 +25,6 @@ router.get("/", (req, res) => {
     if (req.user) {
         if (req.user.type == "admin") {
             res.redirect("/admin/tool");
-        } else {
-
         }
     } else {
         res.redirect("/admin/logintab");
@@ -34,20 +32,23 @@ router.get("/", (req, res) => {
 });
 
 router.get("/logintab", (req, res) => {
-    fs.readFile(path.join("static/html/admin/login.html"), (err, data) => {
-        if (err) {
-            return res.status(500).json({
-                message: "페이지를 로딩하는 동안 오류가 발생하였습니다",
-                err: err
-            });
-        } else {
-            res.writeHead(200, {
-                'Content-Type': 'text/html'
-            });
-            res.end(data);
-        }
-
-    });
+    if(!req.user){
+        fs.readFile(path.join("static/html/admin/login.html"), (err, data) => {
+            if (err) {
+                return res.status(500).json({
+                    message: "페이지를 로딩하는 동안 오류가 발생하였습니다",
+                    err: err
+                });
+            } else {
+                res.writeHead(200, {
+                    'Content-Type': 'text/html'
+                });
+                res.end(data);
+            }
+        });
+    } else{
+        return res.redirect("/admin/tool");
+    }
 });
 //login router
 router.post("/login", isAuthenticated, (req, res, next) => {
@@ -66,14 +67,17 @@ router.post("/login", isAuthenticated, (req, res, next) => {
                 console.log(req.user);
 
                 if (user.type == "admin") {
-                    return res.status(200).send({
+                    return res.status(200).json({
                         success: true,
                         message: "관리자 인증이 완료되었습니다"
                     });
                 } else {
-                    return res.status(401).send({
-                        success: false,
-                        message: "관리자 권한이 없는 계정입니다"
+                    req.logout();
+                    req.session.destroy(() => {
+                        return res.status(401).json({
+                            success: false,
+                            message: "관리자 권한이 없는 계정입니다"
+                        });
                     });
                 }
             })
@@ -82,19 +86,24 @@ router.post("/login", isAuthenticated, (req, res, next) => {
 });
 
 router.get("/tool", (req, res) => {
-    fs.readFile(path.join("static/html/admin/tool.html"), (err, data) => {
-        if (err) {
-            return res.status(500).json({
-                message: "페이지를 로딩하는 동안 오류가 발생하였습니다",
-                err: err
-            });
-        } else {
-            res.writeHead(200, {
-                'Content-Type': 'text/html'
-            });
-            res.end(data);
-        }
-
-    });
+    if(req.user){
+        fs.readFile(path.join("static/html/admin/tool.html"), (err, data) => {
+            if (err) {
+                return res.status(500).json({
+                    message: "페이지를 로딩하는 동안 오류가 발생하였습니다",
+                    err: err
+                });
+            } else {
+                res.writeHead(200, {
+                    'Content-Type': 'text/html'
+                });
+                res.end(data);
+            }
+    
+        });
+    }
+    else{
+        return res.redirect("/admin");
+    }
 });
 module.exports = router;

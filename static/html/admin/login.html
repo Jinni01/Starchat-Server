@@ -38,8 +38,11 @@
 
     <script type="text/javascript">
         $(".button-login").click(() => {
-            const id = $(".input-id").val();
-            const pw = $(".input-pw").val();
+            var id = $(".input-id").val();
+            var pw = $(".input-pw").val();
+
+            console.log(id);
+            console.log(pw);
 
             if (id == "" || id == undefined) {
                 $(".text-msg").text("아이디를 입력하세요");
@@ -59,6 +62,10 @@
                     if(status == "Unauthorized"){
                         $(".text-msg").text(xhr.responseJSON.message);
                     }
+
+                    console.log(xhr);
+                    console.log(err);
+                    console.log(status);
                 })
             }
 
