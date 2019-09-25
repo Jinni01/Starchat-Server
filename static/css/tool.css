@@ -1,0 +1,83 @@
+* {
+    font-family: 'NanumSquare', sans-serif;
+}
+
+html,
+body {
+    height: 86vh;
+}
+
+.box-outline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100%;
+}
+
+.box-outline>.menu-tab {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.box-outline>.menu-tab>.box-tab {
+    width: 50%;
+}
+
+.box-outline>.menu-tab>.box-tab>button {
+    width: 100%;
+    height: 6vh;
+
+    font-size: 14px;
+
+    background-color: #ffd52d;
+    border: none;
+
+    -webkit-appearance: none;
+}
+
+.box-outline>.menu-tab>.box-tab>button.current {
+    width: 100%;
+    height: 6vh;
+
+    font-size: 14px;
+
+    background-color: white;
+    border: none;
+
+    -webkit-appearance: none;
+}
+
+.box-outline>.box-contents {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.box-outline>.box-contents>.table-list {
+    font-size: 10px;
+    font-family: 'NanumSquare', sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 100%;
+    
+    display: none;
+}
+
+.box-outline>.box-contents>.table-list.current{
+    font-size: 12px;
+    font-family: 'NanumSquare', sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 100%;
+
+    display: table;
+}
+
+.box-outline>.box-contents>.table-list td {
+    border: 1px solid black;
+    white-space: nowrap;
+
+    height: 18px;
+}

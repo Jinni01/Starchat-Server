@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
 
     if (req.user) {
         if (req.user.type == "admin") {
-            res.redirect("/admin/menu");
+            res.redirect("/admin/tool");
         } else {
 
         }
@@ -81,8 +81,8 @@ router.post("/login", isAuthenticated, (req, res, next) => {
     })(req, res, next);
 });
 
-router.get("/menu", (req, res) => {
-    fs.readFile(path.join("static/html/admin/menu.html"), (err, data) => {
+router.get("/tool", (req, res) => {
+    fs.readFile(path.join("static/html/admin/tool.html"), (err, data) => {
         if (err) {
             return res.status(500).json({
                 message: "페이지를 로딩하는 동안 오류가 발생하였습니다",
@@ -97,5 +97,4 @@ router.get("/menu", (req, res) => {
 
     });
 });
-
 module.exports = router;

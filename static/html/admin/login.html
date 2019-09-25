@@ -52,14 +52,9 @@
                     method: "POST",
                     dataType: "json"
                 }).done((data, status, xhr) => {
-                    console.log("성공");
 
-                    window.location.replace(window.location.protocol + "//" + window.location.host + "/admin/menu");
+                    window.location.replace(window.location.protocol + "//" + window.location.host + "/admin/tool");
                 }).fail((xhr, err, status) =>{
-                    console.log("실패");
-                    console.log(xhr);
-                    console.log(err);
-                    console.log(status);
 
                     if(status == "Unauthorized"){
                         $(".text-msg").text(xhr.responseJSON.message);

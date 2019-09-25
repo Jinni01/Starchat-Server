@@ -374,4 +374,22 @@ router.post("/find", (req, res) => {
         });
 });
 
+router.post("/list", (req, res) => {
+    connection.query("select email, id, nickname, sex, age, region, introduce, profile, star, signdate from user", (err, result, fields) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: "DB에러"
+            });
+        }
+        if (result && result.length != 0) {
+            console.log(result);
+            return res.status(200).json(result);
+        } else {
+            return res.sendStatus(204);
+        }
+    });
+});
+
 module.exports = router;
