@@ -373,7 +373,8 @@
 
     roomname: room_id
     email: "userEmail"
-    other: "otherUserEmail"
+    nickname: "userNickname"
+    //other: "otherUserEmail"
 
 
 > <code>on</code> resExitRoom, (data) 
@@ -457,6 +458,34 @@
             region: "region" (String),
             introduce: "introduce" (String),
             profile: "profile" (String),
+        }
+        
+    >>> Fail
+    
+        return HTTP 204,
+        return HTTP 500, { success: false, message: "DB에러" }
+        
+> /user/list
+>> Requiring Params
+
+    NO Param
+    
+>> Return Value
+
+    >>> Success
+    
+        return HTTP 200, UserList Scheme
+        {
+            email: "email" (String)
+            id: "id" (String),
+            nickname": "nickname" (String),
+            sex: "sex" (String),
+            age: "age" (String),
+            region: "region" (String),
+            introduce: "introduce" (String),
+            profile: "profile" (String),
+            star: "star" (unsigned int),
+            signdate: "signdate" (datetime)
         }
         
     >>> Fail
