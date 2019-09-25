@@ -19,7 +19,7 @@
             <div class="box-tab"><button class="tab-userdb current">유저DB 보기</button></div>
             <div class="box-tab"><button class="tab-notice">공지사항 관리</button></div>
         </div>
-        <div class="box-contents">
+        <div class="box-userdb current">
             <table class="table-list current">
                 <tr>
                     <td>이메일</td>
@@ -33,21 +33,43 @@
                 </tr>
             </table>
         </div>
+
+        <div class="list-notice">
+            <div class="box-notice">
+                <div class="title-notice">title</div>
+            </div>
+
+            <div class="box-notice">
+                <div class="title-notice">title</div>
+            </div>
+        </div>
+
+
+        <div class="box-floatmenu">
+            <div class="button-newnoti"><img src="../../image/edit.svg" class="image-noti"></div>
+            <div class="button-logout"><img src="../../image/logout.svg" class="image-logout"></div>
+        </div>
     </div>
 
     <script type="text/javascript">
         $(".box-outline>.menu-tab>.box-tab>.tab-notice").click(() => {
             $(".box-outline>.menu-tab>.box-tab>.tab-userdb").removeClass("current");
-            $(".box-outline>.box-contents>.table-list").removeClass("current");
+            $(".box-outline>.box-userdb").removeClass("current");
 
             $(".box-outline>.menu-tab>.box-tab>.tab-notice").addClass("current");
+            $(".box-outline>.list-notice").addClass("current");
+
+            $(".box-floatmenu>.button-newnoti").addClass("current");
         });
 
         $(".box-outline>.menu-tab>.box-tab>.tab-userdb").click(() => {
             $(".box-outline>.menu-tab>.box-tab>.tab-notice").removeClass("current");
+            $(".box-outline>.list-notice").removeClass("current");
 
             $(".box-outline>.menu-tab>.box-tab>.tab-userdb").addClass("current");
-            $(".box-outline>.box-contents>.table-list").addClass("current");
+            $(".box-outline>.box-userdb").addClass("current");
+
+            $(".box-floatmenu>.button-newnoti").removeClass("current");
         });
 
         $(window).load(() => {
@@ -56,10 +78,9 @@
                 method: "POST",
                 dataType: "json"
             }).done((data, status, xhr) => {
-                console.log(data);
 
                 for (var i = 0; i < data.length; ++i) {
-                    $(".box-outline>.box-contents>.table-list").append("<tr>" +
+                    $(".box-outline>.box-userdb>.table-list").append("<tr>" +
                         "<td>" + data[i].email + "</td>" +
                         "<td>" + data[i].id + "</td>" +
                         "<td>" + data[i].nickname + "</td>" +
@@ -72,9 +93,23 @@
                         "</tr>");
                 }
             }).fail((xhr, err, status) => {
-                console.log(xhr);
-                console.log(err);
-                console.log(status);
+                //console.log(xhr);
+                //console.log(err);
+                //console.log(status);
+            });
+        });
+
+        $(".box-floatmenu>.button-logout").click(() => {
+            $.ajax({
+                url: "http://15.164.126.18/user/logout",
+                method: "POST",
+                dataType: "json"
+            }).done((data, status, xhr) => {
+                window.location.replace(window.location.protocol + "//" + window.location.host + "/admin");
+            }).fail((xhr, err, status) => {
+                //console.log(xhr);
+                //console.log(err);
+                //console.log(status);
             });
         });
     </script>

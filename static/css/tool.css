@@ -33,6 +33,7 @@ body {
     font-size: 14px;
 
     background-color: #ffd52d;
+    color: white;
     border: none;
 
     -webkit-appearance: none;
@@ -45,27 +46,31 @@ body {
     font-size: 14px;
 
     background-color: white;
-    border: none;
+    color: #ffd52d;
+    border: 1px solid #ffd52d;
 
     -webkit-appearance: none;
 }
 
-.box-outline>.box-contents {
+.box-outline>.box-userdb {
     width: 100%;
     overflow-x: scroll;
-}
 
-.box-outline>.box-contents>.table-list {
-    font-size: 10px;
-    font-family: 'NanumSquare', sans-serif;
-    border-collapse: collapse;
-    border: none;
-    width: 100%;
-    
     display: none;
+
+    margin-top: 10px;
 }
 
-.box-outline>.box-contents>.table-list.current{
+.box-outline>.box-userdb.current {
+    width: 100%;
+    overflow-x: scroll;
+
+    display: block;
+
+    margin-top: 10px;
+}
+
+.box-outline>.box-userdb>.table-list {
     font-size: 12px;
     font-family: 'NanumSquare', sans-serif;
     border-collapse: collapse;
@@ -75,35 +80,134 @@ body {
     display: table;
 }
 
-.box-outline>.box-contents>.table-list tr:first-child>td {
+.box-outline>.box-userdb>.table-list tr:first-child>td {
     background-color: black;
-    color:white;
+    color: white;
     text-align: center;
 }
 
-.box-outline>.box-contents>.table-list tr:first-child>td:nth-child(2n) {
+.box-outline>.box-userdb>.table-list tr:first-child>td:nth-child(2n) {
     background-color: black;
-    color:white;
+    color: white;
     text-align: center;
 
     border-left: 1px solid white;
     border-right: 1px solid white;
 }
 
-.box-outline>.box-contents>.table-list td {
+.box-outline>.box-userdb>.table-list td {
     border: none;
     white-space: nowrap;
     height: 18px;
-    
+
     background-color: whitesmoke;
 
     padding: 5px;
 }
 
-.box-outline>.box-contents>.table-list td:nth-child(2n + 1) {
+.box-outline>.box-userdb>.table-list td:nth-child(2n + 1) {
     border: none;
     white-space: nowrap;
     height: 18px;
-    
+
     background-color: lightgray;
+}
+
+.box-outline>.list-notice {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+}
+
+.box-outline>.list-notice.current {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.box-outline>.list-notice>.box-notice {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 98%;
+    background-color: #ffd52d;
+
+}
+
+.box-outline>.list-notice>.box-notice>.title-notice {
+    padding: 10px;
+    background-color: lightgray;
+
+    cursor: pointer;
+}
+
+
+
+
+
+.box-floatmenu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+
+    bottom: 10px;
+    right: 10px;
+}
+
+.box-floatmenu>.button-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ffd52d;
+    color:white;
+    border: none;
+    cursor: pointer;
+}
+
+.box-floatmenu>.button-logout>.image-logout{
+    width: 36px;
+    height: 36px;
+
+    margin-right: 6px;
+}
+
+.box-floatmenu>.button-newnoti {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ffd52d;
+    color:white;
+    border: none;
+    cursor: pointer;
+
+    margin-bottom: 10px;
+}
+
+.box-floatmenu>.button-newnoti.current {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ffd52d;
+    color:white;
+    border: none;
+    cursor: pointer;
+
+    margin-bottom: 10px;
+}
+
+.box-floatmenu>.button-newnoti>.image-noti{
+    width: 36px;
+    height: 36px;
+
+    margin-left: 4px;
 }
