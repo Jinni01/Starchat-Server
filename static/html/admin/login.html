@@ -47,14 +47,24 @@
                 $(".text-msg").text("비밀번호를 입력하세요");
             } else {
                 $.ajax({
-                   url: "http://15.164.126.18/admin/login",
-                   data: { userID: id, userPW: pw },
-                   method: "POST",
-                   dataType: "json" 
+                    url: "http://localhost/admin/login",
+                    data: { userID: id, userPW: pw },
+                    method: "POST",
+                    dataType: "json"
+                }).done((data, status, xhr) => {
+                    console.log("성공");
+
+                    window.location.replace(window.location.protocol + "//" + window.location.host + "/admin/menu");
+                }).fail((xhr, err, status) =>{
+                    console.log("실패");
+                    console.log(xhr);
+                    console.log(err);
+                    console.log(status);
+
+                    if(status == "Unauthorized"){
+                        $(".text-msg").text(xhr.responseJSON.message);
+                    }
                 })
-                .done((json) => {
-                    alert(json);
-                });
             }
 
         });
