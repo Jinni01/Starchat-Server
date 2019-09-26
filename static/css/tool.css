@@ -116,6 +116,7 @@ body {
 .box-outline>.list-notice {
     display: none;
     flex-direction: column;
+    align-items: center;
     width: 100%;
 }
 
@@ -126,25 +127,14 @@ body {
     width: 100%;
 }
 
-.box-outline>.list-notice>.box-notice {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    width: 98%;
-    background-color: #ffd52d;
-
-}
-
-.box-outline>.list-notice>.box-notice>.title-notice {
+.box-outline>.list-notice>.title-notice {
     padding: 10px;
     background-color: lightgray;
+    margin-top: 10px;
+    width: 96%;
 
     cursor: pointer;
 }
-
-
-
-
 
 .box-floatmenu {
     display: flex;

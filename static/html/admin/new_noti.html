@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        공지사항 작성
+    </title>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost/css/new_noti.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+</head>
+
+<body ontouchstart="">
+    <div class="box-outline">
+        <div class="box-notice">
+            <input type="text" class="input-title">
+            <textarea class="input-text"></textarea>
+
+            <div class="box-menu">
+                <div class="box-save"><button class="button-save">내용 저장</button></div>
+                <div class="box-cancle"><button class="button-cancle">작성 취소</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(".box-outline>.box-notice>.box-menu>.box-save>.button-save").click(() => {
+            var title = $(".box-outline>.box-notice>.input-title").val();
+            var text = $(".box-outline>.box-notice>.input-text").val();
+            console.log(title);
+            console.log(text);
+            if (title == "" || title == undefined) {
+                alert("제목을 입력하세요");
+            } else if (text == "" || text == undefined) {
+                alert("내용을 입력하세요");
+            } else {
+                $.ajax({
+                    url: "http://localhost/admin/noti/new",
+                    method: "POST",
+                    data: { noticeTitle: title, noticeText: text },
+                    dataType: "json"
+                }).done((data, status, xhr) => {
+                    window.location.replace(window.location.protocol + "//" + window.location.host +
+                        "/admin");
+                }).fail((xhr, err, status) => {
+                    //console.log(xhr);
+                    //console.log(err);
+                    //console.log(status);
+                });
+            }
+
+        });
+
+        $(".box-outline>.box-notice>.box-menu>.box-cancle>.button-cancle").click(() => {
+            window.location.replace(window.location.protocol + "//" + window.location.host +
+                "/admin");
+        });
+    </script>
+</body>

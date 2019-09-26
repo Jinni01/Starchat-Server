@@ -7,7 +7,7 @@
     </title>
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../css/tool.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/css/tool.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
 
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
@@ -35,13 +35,7 @@
         </div>
 
         <div class="list-notice">
-            <div class="box-notice">
-                <div class="title-notice">title</div>
-            </div>
-
-            <div class="box-notice">
-                <div class="title-notice">title</div>
-            </div>
+            
         </div>
 
 
@@ -72,9 +66,17 @@
             $(".box-floatmenu>.button-newnoti").removeClass("current");
         });
 
+        $(".box-outline>.list-notice").on('click', ".title-notice", (event) => {
+            const idx = $(event.target).data("idx");
+
+            window.location.replace(window.location.protocol + "//" + window.location.host +
+                "/admin/noti/view/" + idx);
+        });
+
         $(window).load(() => {
+
             $.ajax({
-                url: "http://15.164.126.18/user/list",
+                url: "http://localhost/user/list",
                 method: "POST",
                 dataType: "json"
             }).done((data, status, xhr) => {
@@ -97,20 +99,44 @@
                 //console.log(err);
                 //console.log(status);
             });
+
+            $.ajax({
+                url: "http://localhost/admin/noti/list",
+                method: "POST",
+                dataType: "json"
+            }).done((data, status, xhr) => {
+                if (data) {
+                    for (var i = 0; i < data.length; ++i) {
+                        $(".list-notice").append("<div class='title-notice' data-idx='" + data[i]
+                            .index +
+                            "'>" + data[i].title + "</div>");
+                    }
+                }
+            }).fail((xhr, err, status) => {
+                console.log(xhr);
+                console.log(err);
+                console.log(status);
+            });
         });
 
         $(".box-floatmenu>.button-logout").click(() => {
             $.ajax({
-                url: "http://15.164.126.18/user/logout",
+                url: "http://localhost/user/logout",
                 method: "POST",
                 dataType: "json"
             }).done((data, status, xhr) => {
-                window.location.replace(window.location.protocol + "//" + window.location.host + "/admin");
+                window.location.replace(window.location.protocol + "//" + window.location.host +
+                    "/admin");
             }).fail((xhr, err, status) => {
                 //console.log(xhr);
                 //console.log(err);
                 //console.log(status);
             });
+        });
+
+        $(".box-floatmenu>.button-newnoti").click(() => {
+            window.location.replace(window.location.protocol + "//" + window.location.host +
+                "/admin/noti/new");
         });
     </script>
 </body>

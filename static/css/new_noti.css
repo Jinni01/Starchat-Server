@@ -1,0 +1,102 @@
+* {
+    font-family: 'NanumSquare', sans-serif;
+}
+
+html,
+body {
+    height: 86vh;
+}
+
+.box-outline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100%;
+}
+
+.box-outline>.list-notice {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.box-outline>.box-notice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 98%;
+    height: 100%;
+}
+
+.box-outline>.box-notice>.input-title {
+    font-size: 14px;
+    
+    border: 2px solid gray;
+    width: 95%;
+    height: 4%;
+    padding: 6px;
+
+    -webkit-appearance: none;
+}
+
+.box-outline>.box-notice>.input-text {
+    font-size: 14px;
+    
+    border: 2px solid gray;
+    width: 95%;
+    height: 80%;
+    margin-top: 10px;
+    padding: 6px;
+
+    text-align: start;
+    resize: none;
+
+    -webkit-appearance: none;
+}
+
+.box-outline>.box-notice>.box-menu {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 6%;
+    margin-top: 10px;
+}
+
+.box-outline>.box-notice>.box-menu>.box-save {
+    width: 50%;
+    height: 100%;
+    background-color: lightgray;
+}
+
+.box-outline>.box-notice>.box-menu>.box-save>.button-save {
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    color: white;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+}
+
+.box-outline>.box-notice>.box-menu>.box-cancle {
+    width: 50%;
+    height: 100%;
+    background-color: lightgray;
+}
+
+.box-outline>.box-notice>.box-menu>.box-cancle>.button-cancle {
+    width: 100%;
+    height: 100%;
+    background-color: lightpink;
+    color: white;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+}

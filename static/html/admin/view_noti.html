@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        공지사항 보기
+    </title>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost/css/view_noti.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+</head>
+
+<body ontouchstart="">
+    <div class="box-outline">
+        <div class="box-notice">
+            <input type="text" class="input-title" disabled>
+            <textarea class="input-text" disabled></textarea>
+
+            <div class="box-menu">
+                <div class="box-edit"><button class="button-edit">내용 수정</button></div>
+                <div class="box-remove"><button class="button-remove">공지 삭제</button></div>
+                <div class="box-cancle"><button class="button-cancle">목록으로</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(".box-outline>.box-notice>.box-menu>.box-edit>.button-edit").click(() => {
+            window.location.replace(window.location.href.replace("view", "edit"));
+        });
+
+        $(".box-outline>.box-notice>.box-menu>.box-remove>.button-remove").click(() => {
+            $.ajax({
+                url: window.location.href,
+                method: "DELETE",
+                dataType: "json"
+            }).done((data, status, xhr) => {
+                console.log(data);
+                if (data.success) {
+                    window.location.replace(window.location.protocol + "//" + window.location.host +
+                        "/admin");
+                }
+            }).fail((xhr, err, status) => {
+                //console.log(xhr);
+                //console.log(err);
+                //console.log(status);
+            });
+        });
+
+        $(".box-outline>.box-notice>.box-menu>.box-cancle>.button-cancle").click(() => {
+            window.location.replace(window.location.protocol + "//" + window.location.host +
+                "/admin");
+        });
+
+        $(window).load(() => {
+            $.ajax({
+                url: window.location.href,
+                method: "POST",
+                dataType: "json"
+            }).done((data, status, xhr) => {
+                $(".box-outline>.box-notice>.input-title").val(data.title);
+                $(".box-outline>.box-notice>.input-text").val(data.contents);
+            }).fail((xhr, err, status) => {
+                //console.log(xhr);
+                //console.log(err);
+                //console.log(status);
+            });
+        });
+    </script>
+</body>
