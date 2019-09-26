@@ -275,4 +275,43 @@ router.post("/noti/edit/:idx", (req, res) => {
     });
 });
 
+router.delete("/user/delete", (req, res) => {
+    if (req.user) {
+        if (req.user.type == "admin") {
+            const userEmail = req.body.userEmail;
+
+            connection.query("delete from user where email=?", [userEmail], (err, result, fields) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).json({
+                        success: false,
+                        message: "DB에러"
+                    });
+                }
+                if (result && result.length != 0) {
+                    res.status(200).json({
+                        success: true,
+                        message: "[ "+ userEmail + " ]\n" + "계정 삭제 성공"
+                    });
+                } else {
+                    return res.sendStatus(204);
+                }
+            });
+
+        } else {
+            return res.status(401).json({
+                success: false,
+                message: "삭제 권한이 없습니다"
+            });
+        }
+    } else {
+        return res.status(401).json({
+            success: false,
+            message: "잘못된 접근입니다"
+        });
+    }
+
+
+});
+
 module.exports = router;

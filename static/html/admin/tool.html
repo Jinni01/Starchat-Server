@@ -40,6 +40,7 @@
 
         <div class="box-floatmenu">
             <div class="button-newnoti"><img src="../../image/edit.svg" class="image-noti"></div>
+            <div class="button-kickuser current"><img src="../../image/loschen.svg" class="image-kick"></div>
             <div class="button-logout"><img src="../../image/logout.svg" class="image-logout"></div>
         </div>
     </div>
@@ -53,6 +54,7 @@
             $(".box-outline>.list-notice").addClass("current");
 
             $(".box-floatmenu>.button-newnoti").addClass("current");
+            $(".box-floatmenu>.button-kickuser").removeClass("current");
         });
 
         $(".box-outline>.menu-tab>.box-tab>.tab-userdb").click(() => {
@@ -63,15 +65,16 @@
             $(".box-outline>.box-userdb").addClass("current");
 
             $(".box-floatmenu>.button-newnoti").removeClass("current");
+            $(".box-floatmenu>.button-kickuser").addClass("current");
         });
 
         $(".box-outline>.list-notice").on('click', ".box-notice>", (event) => {
             //console.log(event.target);
             const idx = $(event.target).data("idx");
 
-            if(idx != "" && idx != undefined){
+            if (idx != "" && idx != undefined) {
                 window.location.href = window.location.protocol + "//" + window.location.host +
-                "/admin/noti/view/" + idx;
+                    "/admin/noti/view/" + idx;
             }
         });
 
@@ -79,9 +82,9 @@
             var link = window.location.href.split("/");
             var tabID = link.pop();
 
-            if(tabID != "tool"){
-                if(tabID == "#notice"){
-                    $(".box-outline>.menu-tab>.box-tab>.tab-notice").trigger("click");                
+            if (tabID != "tool") {
+                if (tabID == "#notice") {
+                    $(".box-outline>.menu-tab>.box-tab>.tab-notice").trigger("click");
                 }
                 /*
                 if(tabID == "userdb"){
@@ -124,10 +127,11 @@
                     //console.log(data);
                     for (var i = 0; i < data.length; ++i) {
 
-                        $(".list-notice").append("<div class='box-notice'>"
-                             + "<div class='title-notice' data-idx='" + data[i].index +"'>" + data[i].title + "</div>" 
-                             + "<div class='index-notice'>" + (data.length - i) + "</div>"
-                             + "</div>");
+                        $(".list-notice").append("<div class='box-notice'>" +
+                            "<div class='title-notice' data-idx='" + data[i].index + "'>" + data[i]
+                            .title + "</div>" +
+                            "<div class='index-notice'>" + (data.length - i) + "</div>" +
+                            "</div>");
                     }
                 }
             }).fail((xhr, err, status) => {
@@ -155,6 +159,57 @@
         $(".box-floatmenu>.button-newnoti").click(() => {
             window.location.href = window.location.protocol + "//" + window.location.host +
                 "/admin/noti/new";
+        });
+
+        $(".box-floatmenu>.button-kickuser").click(() => {
+            var input = prompt("삭제할 유저의 이메일을 입력해 주세요");
+            var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+            if (input.match(regExp)) {
+
+                $.ajax({
+                    url: "http://15.164.126.18/user/find",
+                    method: "POST",
+                    data: {
+                        userEmail: input
+                    },
+                    dataType: "json"
+                }).done((data, status, xhr) => {
+                    if (data) {
+                        if (confirm("[ " + data.email + " ]\n" +"정말로 삭제하시겠습니까?")) {
+                            $.ajax({
+                                url: "http://15.164.126.18/admin/user/delete",
+                                method: "DELETE",
+                                data: {
+                                    userEmail: input
+                                },
+                                dataType: "json"
+                            }).done((data, status, xhr) => {
+                                if (data.success) {
+                                    alert(data.message);
+                                    window.location.reload();
+                                }
+                            }).fail((xhr, err, status) => {
+                                //console.log(xhr);
+                                //console.log(err);
+                                //console.log(status);
+                            });
+                        } else {
+                            alert("취소되었습니다");
+                        }
+                    }
+                    else{
+                        alert("존재하지 않는 유저입니다");
+                    }
+                }).fail((xhr, err, status) => {
+                    //console.log(xhr);
+                    //console.log(err);
+                    //console.log(status);
+                });
+            } else {
+                alert("올바른 이메일 형식을 입력하세요");
+            }
+
         });
     </script>
 </body>

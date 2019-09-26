@@ -222,3 +222,38 @@ body {
 
     margin-left: 4px;
 }
+
+.box-floatmenu>.button-kickuser {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ffd52d;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    margin-bottom: 10px;
+}
+
+.box-floatmenu>.button-kickuser.current {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ffd52d;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    margin-bottom: 10px;
+}
+
+.box-floatmenu>.button-kickuser>.image-kick {
+    width: 36px;
+    height: 36px;
+}
