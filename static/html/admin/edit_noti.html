@@ -50,9 +50,7 @@
                     dataType: "json"
                 }).done((data, status, xhr) => {
                     if (data.success) {
-                        window.location.href = window.location.href.replace("edit", "view");
-
-                        window.location.replace()
+                        window.location.replace = window.location.href.replace("edit", "view");
                     }
                 }).fail((xhr, err, status) => {
                     //console.log(xhr);
