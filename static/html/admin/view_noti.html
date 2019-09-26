@@ -7,7 +7,7 @@
     </title>
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://localhost/css/view_noti.css">
+    <link rel="stylesheet" type="text/css" href="http://15.164.126.18/css/view_noti.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
 
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
@@ -51,8 +51,8 @@
         });
 
         $(".box-outline>.box-notice>.box-menu>.box-cancle>.button-cancle").click(() => {
-            window.location.replace(window.location.protocol + "//" + window.location.host +
-                "/admin");
+            window.location.href = window.location.protocol + "//" + window.location.host +
+                "/admin";
         });
 
         $(window).load(() => {

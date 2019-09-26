@@ -7,7 +7,7 @@
     </title>
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://localhost/css/login.css">
+    <link rel="stylesheet" type="text/css" href="http://15.164.126.18/css/login.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
 
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
@@ -50,13 +50,13 @@
                 $(".text-msg").text("비밀번호를 입력하세요");
             } else {
                 $.ajax({
-                    url: "http://localhost/admin/login",
+                    url: "http://15.164.126.18/admin/login",
                     data: { userID: id, userPW: pw },
                     method: "POST",
                     dataType: "json"
                 }).done((data, status, xhr) => {
 
-                    window.location.replace(window.location.protocol + "//" + window.location.host + "/admin/tool");
+                    window.location.replace(window.location.protocol + "//" + window.location.host + "/admin");
                 }).fail((xhr, err, status) =>{
 
                     if(status == "Unauthorized"){

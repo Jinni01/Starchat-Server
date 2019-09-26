@@ -108,7 +108,7 @@ router.get("/tool", (req, res) => {
 });
 
 router.post("/noti/list", (req, res) => {
-    connection.query("select `index`, `title` from notice", (err, result, fields) => {
+    connection.query("select `index`, `title` from notice order by `index` desc", (err, result, fields) => {
         if (err) {
             console.log(err);
             return res.status(500).json({

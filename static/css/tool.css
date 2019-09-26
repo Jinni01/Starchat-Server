@@ -127,13 +127,34 @@ body {
     width: 100%;
 }
 
-.box-outline>.list-notice>.title-notice {
-    padding: 10px;
-    background-color: lightgray;
-    margin-top: 10px;
-    width: 96%;
+.box-outline>.list-notice>.box-notice {
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+    height: 40px;
 
+    margin-top: 10px;
     cursor: pointer;
+}
+
+.box-outline>.list-notice>.box-notice>.title-notice {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height:40px;
+    background-color: lightslategray;
+    color: white;
+    padding-left: 10px;
+}
+
+.box-outline>.list-notice>.box-notice>.index-notice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 35px;
+    height:40px;
+    background-color: black;
 }
 
 .box-floatmenu {
@@ -153,12 +174,12 @@ body {
     height: 50px;
     border-radius: 50px;
     background-color: #ffd52d;
-    color:white;
+    color: white;
     border: none;
     cursor: pointer;
 }
 
-.box-floatmenu>.button-logout>.image-logout{
+.box-floatmenu>.button-logout>.image-logout {
     width: 36px;
     height: 36px;
 
@@ -173,7 +194,7 @@ body {
     height: 50px;
     border-radius: 50px;
     background-color: #ffd52d;
-    color:white;
+    color: white;
     border: none;
     cursor: pointer;
 
@@ -188,14 +209,14 @@ body {
     height: 50px;
     border-radius: 50px;
     background-color: #ffd52d;
-    color:white;
+    color: white;
     border: none;
     cursor: pointer;
 
     margin-bottom: 10px;
 }
 
-.box-floatmenu>.button-newnoti>.image-noti{
+.box-floatmenu>.button-newnoti>.image-noti {
     width: 36px;
     height: 36px;
 
