@@ -372,7 +372,7 @@ router.post("/star/minus", (req, res) => {
 router.post("/find", (req, res) => {
     const userEmail = req.body.userEmail;
 
-    connection.query("select email, nickname, sex, age, region, introduce, profile from user where email=?",
+    connection.query("select email, nickname, sex, age, region, introduce, profile, type from user where email=?",
         [userEmail], (err, result, fields) => {
             if (err) {
                 console.log(err);
