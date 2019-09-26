@@ -50,8 +50,9 @@
                     dataType: "json"
                 }).done((data, status, xhr) => {
                     if (data.success) {
-                        window.location.href = window.location.protocol + "//" + window.location.host +
-                            "/admin/tool/#notice";
+                        window.location.href = window.location.href.replace("edit", "view");
+
+                        window.location.replace()
                     }
                 }).fail((xhr, err, status) => {
                     //console.log(xhr);
