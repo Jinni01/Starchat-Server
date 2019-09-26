@@ -40,11 +40,14 @@
                 $.ajax({
                     url: "http://15.164.126.18/admin/noti/new",
                     method: "POST",
-                    data: { noticeTitle: title, noticeText: text },
+                    data: {
+                        noticeTitle: title,
+                        noticeText: text
+                    },
                     dataType: "json"
                 }).done((data, status, xhr) => {
-                    window.location.replace(window.location.protocol + "//" + window.location.host +
-                        "/admin");
+                    window.location.href = window.location.protocol + "//" + window.location.host +
+                        "/admin/tool/#notice";
                 }).fail((xhr, err, status) => {
                     //console.log(xhr);
                     //console.log(err);
@@ -55,8 +58,8 @@
         });
 
         $(".box-outline>.box-notice>.box-menu>.box-cancle>.button-cancle").click(() => {
-            window.location.replace(window.location.protocol + "//" + window.location.host +
-                "/admin");
+            window.location.href = window.location.protocol + "//" + window.location.host +
+                "/admin/tool/#notice";
         });
     </script>
 </body>

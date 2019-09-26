@@ -73,6 +73,22 @@
                 "/admin/noti/view/" + idx;
         });
 
+        $(document).ready(()=>{
+            var link = window.location.href.split("/");
+            var tabID = link.pop();
+
+            if(tabID != "tool"){
+                if(tabID == "#notice"){
+                    $(".box-outline>.menu-tab>.box-tab>.tab-notice").trigger("click");                
+                }
+                /*
+                if(tabID == "userdb"){
+                    $(".box-outline>.menu-tab>.box-tab>.tab-userdb").trigger("click");
+                }
+                */
+            }
+        });
+
         $(window).load(() => {
 
             $.ajax({
@@ -106,7 +122,7 @@
                 dataType: "json"
             }).done((data, status, xhr) => {
                 if (data) {
-                    console.log(data);
+                    //console.log(data);
                     for (var i = 0; i < data.length; ++i) {
 
                         $(".list-notice").append("<div class='box-notice'>"
@@ -116,9 +132,9 @@
                     }
                 }
             }).fail((xhr, err, status) => {
-                console.log(xhr);
-                console.log(err);
-                console.log(status);
+                //console.log(xhr);
+                //console.log(err);
+                //console.log(status);
             });
         });
 
