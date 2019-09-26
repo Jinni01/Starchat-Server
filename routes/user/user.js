@@ -221,33 +221,36 @@ router.post("/leave", (req, res) => {
     console.log(userEmail);
     const userProfile = req.user.profile;
 
-    fs.unlink(path.join(__dirname, "/profileImage", userProfile), function (err) {
-        if (err) {
-            console.log(err);
-            return res.status(500).json({
-                success: false,
-                message: "파일 삭제 에러"
-            });
-        }
-        req.logout();
-        req.session.destroy(() => {
-            connection.query("delete from user where email = ?", [userEmail], (err, result, fields) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(500).json({
-                        success: false,
-                        message: "DB에러"
-                    });
-                }
-                if (result && result.length != 0) {
-                    return res.status(200).json({
-                        success: true,
-                        message: "유저 정보 삭제 성공"
-                    });
-                } else {
-                    return res.sendStatus(204);
-                }
-            });
+
+    if (userProfile != "sample.png") {
+        fs.unlink(path.join(__dirname, "/profileImage", userProfile), function (err) {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                    success: false,
+                    message: "파일 삭제 에러"
+                });
+            }
+        });
+    }
+    req.logout();
+    req.session.destroy(() => {
+        connection.query("delete from user where email = ?", [userEmail], (err, result, fields) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                    success: false,
+                    message: "DB에러"
+                });
+            }
+            if (result && result.length != 0) {
+                return res.status(200).json({
+                    success: true,
+                    message: "유저 정보 삭제 성공"
+                });
+            } else {
+                return res.sendStatus(204);
+            }
         });
     });
 });
