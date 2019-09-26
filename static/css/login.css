@@ -17,8 +17,8 @@ body {
 }
 
 .box-outline>.box-logo>.img-logo {
-    width: 50vw;
-    height: 50vw;
+    width: 200px;
+    height: 200px;
 }
 
 .box-outline>.box-login>.box-id>.input-id {
