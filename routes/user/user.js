@@ -223,6 +223,7 @@ router.post("/leave", (req, res) => {
 
     fs.unlink(path.join(__dirname, "/routes/user/profileImage", userProfile), function (err) {
         if (err) {
+            console.log(err);
             return res.status(500).json({
                 success: false,
                 message: "파일 삭제 에러"
