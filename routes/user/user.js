@@ -221,7 +221,8 @@ router.post("/leave", (req, res) => {
     console.log(userEmail);
     const userProfile = req.user.profile;
 
-
+    console.log(userProfile);
+    console.log(userProfile != "sample.png");
     if (userProfile != "sample.png") {
         fs.unlink(path.join(__dirname, "/profileImage", userProfile), function (err) {
             if (err) {
