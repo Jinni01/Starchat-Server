@@ -66,11 +66,13 @@
         });
 
         $(".box-outline>.list-notice").on('click', ".box-notice>", (event) => {
-            console.log(event.target);
+            //console.log(event.target);
             const idx = $(event.target).data("idx");
 
-            window.location.href = window.location.protocol + "//" + window.location.host +
+            if(idx != "" && idx != undefined){
+                window.location.href = window.location.protocol + "//" + window.location.host +
                 "/admin/noti/view/" + idx;
+            }
         });
 
         $(document).ready(() => {
