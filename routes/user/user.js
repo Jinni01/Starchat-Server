@@ -4,6 +4,7 @@ const path = require("path");
 const dateFormat = require("dateformat");
 const crypto = require("crypto");
 const passport = require("passport");
+const fs = require("fs");
 
 const connection = require("../../db/db_connection");
 
@@ -218,25 +219,34 @@ router.post("/leave", (req, res) => {
 
     const userEmail = req.user.email;
     console.log(userEmail);
+    const userProfile = req.user.profile;
 
-    req.logout();
-    req.session.destroy(() => {
-        connection.query("delete from user where email = ?", [userEmail], (err, result, fields) => {
-            if (err) {
-                console.log(err);
-                return res.status(500).json({
-                    success: false,
-                    message: "DB에러"
-                });
-            }
-            if (result && result.length != 0) {
-                return res.status(200).json({
-                    success: true,
-                    message: "유저 정보 삭제 성공"
-                });
-            } else {
-                return res.sendStatus(204);
-            }
+    fs.unlink(path.join(__dirname, "/routes/user/profileImage", userProfile), function (err) {
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "파일 삭제 에러"
+            });
+        }
+        req.logout();
+        req.session.destroy(() => {
+            connection.query("delete from user where email = ?", [userEmail], (err, result, fields) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).json({
+                        success: false,
+                        message: "DB에러"
+                    });
+                }
+                if (result && result.length != 0) {
+                    return res.status(200).json({
+                        success: true,
+                        message: "유저 정보 삭제 성공"
+                    });
+                } else {
+                    return res.sendStatus(204);
+                }
+            });
         });
     });
 });
