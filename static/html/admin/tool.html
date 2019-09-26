@@ -73,7 +73,7 @@
                 "/admin/noti/view/" + idx;
         });
 
-        $(document).ready(()=>{
+        $(document).ready(() => {
             var link = window.location.href.split("/");
             var tabID = link.pop();
 
@@ -87,9 +87,6 @@
                 }
                 */
             }
-        });
-
-        $(window).load(() => {
 
             $.ajax({
                 url: "http://15.164.126.18/user/list",
