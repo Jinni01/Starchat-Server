@@ -54,6 +54,7 @@ body {
 
 .box-outline>.box-userdb {
     width: 100%;
+    height: 90%;
     overflow-x: scroll;
 
     display: none;
@@ -114,21 +115,21 @@ body {
 }
 
 .box-outline>.list-outline{
-    
     overflow: scroll;
     width: 100%;
     height: 90%;
+    display: none;
+}
+
+.box-outline>.list-outline.current{
+    overflow: scroll;
+    width: 100%;
+    height: 90%;
+    display: block;
 }
 
 .box-outline>.list-outline>.list-notice {
     display: none;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.box-outline>.list-outline>.list-notice.current {
-    display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
