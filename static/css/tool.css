@@ -4,7 +4,7 @@
 
 html,
 body {
-    height: 86vh;
+    height: 98vh;
 }
 
 .box-outline {
@@ -118,6 +118,8 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+    overflow-y: scroll;
 }
 
 .box-outline>.list-notice.current {
@@ -125,6 +127,8 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+    overflow-y: scroll;
 }
 
 .box-outline>.list-notice>.box-notice {
