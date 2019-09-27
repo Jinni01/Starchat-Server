@@ -115,6 +115,7 @@ body {
 
 .box-outline>.test{
     overflow-y: scroll;
+    width: 100%;
 }
 
 .box-outline>.test>.list-notice {
