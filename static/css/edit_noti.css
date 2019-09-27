@@ -70,7 +70,6 @@ body {
 .box-outline>.box-notice>.box-menu>.box-edit {
     width: 50%;
     height: 100%;
-    background-color: lightgray;
 }
 
 .box-outline>.box-notice>.box-menu>.box-edit>.button-edit {
@@ -88,7 +87,6 @@ body {
 .box-outline>.box-notice>.box-menu>.box-cancle {
     width: 50%;
     height: 100%;
-    background-color: lightgray;
 }
 
 .box-outline>.box-notice>.box-menu>.box-cancle>.button-cancle {
