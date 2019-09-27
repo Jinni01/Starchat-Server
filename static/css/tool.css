@@ -113,27 +113,25 @@ body {
     background-color: lightgray;
 }
 
-.box-outline>.list-notice {
+.box-outline>.test{
+    overflow-y: scroll;
+}
+
+.box-outline>.test>.list-notice {
     display: none;
     flex-direction: column;
     align-items: center;
-    overflow-y: scroll;
     width: 100%;
-
-    -webkit-overflow-scrolling: touch;
 }
 
-.box-outline>.list-notice.current {
+.box-outline>.test>.list-notice.current {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: scroll;
     width: 100%;
-
-    -webkit-overflow-scrolling: touch;
 }
 
-.box-outline>.list-notice>.box-notice {
+.box-outline>.test>.list-notice>.box-notice {
     display: flex;
     justify-content: space-between;
     width: 98%;
@@ -143,7 +141,7 @@ body {
     cursor: pointer;
 }
 
-.box-outline>.list-notice>.box-notice>.title-notice {
+.box-outline>.test>.list-notice>.box-notice>.title-notice {
     display: flex;
     align-items: center;
     width: 100%;
@@ -153,7 +151,7 @@ body {
     padding-left: 10px;
 }
 
-.box-outline>.list-notice>.box-notice>.index-notice {
+.box-outline>.test>.list-notice>.box-notice>.index-notice {
     display: flex;
     justify-content: center;
     align-items: center;
