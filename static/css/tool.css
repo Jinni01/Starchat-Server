@@ -5,6 +5,7 @@
 html,
 body {
     height: 88vh;
+    overflow: auto;
 }
 
 .box-outline {
