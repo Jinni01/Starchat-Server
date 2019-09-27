@@ -57,6 +57,9 @@
 
             $(".box-floatmenu>.button-newnoti").addClass("current");
             $(".box-floatmenu>.button-kickuser").removeClass("current");
+
+            window.location.href = window.location.protocol + "//" + window.location.host +
+                "/admin/tool/#notice";
         });
 
         $(".box-outline>.menu-tab>.box-tab>.tab-userdb").click(() => {
@@ -68,6 +71,9 @@
 
             $(".box-floatmenu>.button-newnoti").removeClass("current");
             $(".box-floatmenu>.button-kickuser").addClass("current");
+
+            window.location.href = window.location.protocol + "//" + window.location.host +
+                "/admin/tool/#userdb";
         });
 
         $(".box-outline>.list-outline>.list-notice").on('click', ".box-notice>", (event) => {
@@ -88,11 +94,9 @@
                 if (tabID == "#notice") {
                     $(".box-outline>.menu-tab>.box-tab>.tab-notice").trigger("click");
                 }
-                /*
-                if(tabID == "userdb"){
+                if(tabID == "#userdb"){
                     $(".box-outline>.menu-tab>.box-tab>.tab-userdb").trigger("click");
                 }
-                */
             }
 
             $.ajax({
