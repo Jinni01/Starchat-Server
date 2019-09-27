@@ -115,6 +115,7 @@ body {
 
 .box-outline>.test{
     
+    overflow: scroll;
     width: 100%;
     height: 90%;
 }
