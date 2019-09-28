@@ -276,9 +276,7 @@ router.post("/star", (req, res) => {
         }
         if (result && result.length != 0) {
 
-            return res.status(200).json({
-                star: result
-            })
+            return res.status(200).json(result[0]);
         } else {
             return res.sendStatus(204);
         }
