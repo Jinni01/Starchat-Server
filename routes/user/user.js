@@ -255,6 +255,36 @@ router.post("/leave", (req, res) => {
     });
 });
 
+router.post("/star", (req, res) => {
+    if (!req.user) {
+        return res.status(400).json({
+            success: false,
+            message: "로그인되어 있지 않습니다"
+        });
+    }
+
+    const userEmail = req.user.email;
+    connection.query("select star from user where email=?", [userEmail], (err, result, fields) => {
+        console.log(fields);
+
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: "DB에러"
+            });
+        }
+        if (result && result.length != 0) {
+
+            return res.status(200).json({
+                star: result
+            })
+        } else {
+            return res.sendStatus(204);
+        }
+    });
+});
+
 router.post("/star/plus", (req, res) => {
     if (!req.user) {
         return res.status(400).json({
