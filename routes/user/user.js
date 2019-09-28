@@ -407,4 +407,21 @@ router.post("/list", (req, res) => {
     });
 });
 
+router.post("/noti/list", (req, res) => {
+    connection.query("select `title`, `contents` from notice order by `index` desc", (err, result, fields) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: "DB에러"
+            });
+        }
+        if (result && result.length != 0) {
+            return res.status(200).json(result);
+        } else {
+            return res.sendStatus(204);
+        }
+    });
+});
+
 module.exports = router;
