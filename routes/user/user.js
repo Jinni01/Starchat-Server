@@ -218,12 +218,11 @@ router.post("/leave", (req, res) => {
     }
 
     const userEmail = req.user.email;
-    console.log(userEmail);
     const userProfile = req.user.profile;
-
-    console.log(userProfile);
-    console.log(userProfile != "sample.png");
+    //console.log(userProfile != "sample.png");
     if (userProfile != "sample.png") {
+        console.log("requester : " + userEmail);
+        console.log("will be removed : " + userProfile);
         fs.unlink(path.join(__dirname, "/profileImage", userProfile), function (err) {
             if (err) {
                 console.log(err);
@@ -330,7 +329,7 @@ router.post("/star/minus", (req, res) => {
             });
         }
         if (result && result.length != 0) {
-            console.log(result);
+            console.log(result[0]);
             const star = Number(result[0].star);
             console.log(star);
 
