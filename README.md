@@ -27,7 +27,7 @@
 1. [Auth](#auth)
 2. [Chat](#chat)
 3. [Star](#star)
-4. [Find](#find)
+4. [User](#user)
 5. [TOS & PP](#tospp)
 
 ### Auth (회원가입, 로그인, 로그아웃, 탈퇴) <span id="auth"></span>
@@ -37,10 +37,7 @@
 > /user/signup
 >> Requiring Params
 
-    
-    
-    
-    : "email" (String),
+    userEmail: "email" (String),
     userID: "id" (String),
     userPW: "pw" (String)
     
@@ -400,7 +397,24 @@
         None
 
          
-### Star (별 충전, 사용) <span id="star"></span>
+### Star (별 확인, 별 충전, 사용) <span id="star"></span>
+
+#### 별 확인
+> /star
+>> Requiring Params
+
+    NO Param
+
+>> Return Value
+
+    >>> Success
+    
+        return HTTP 200, { star: starAmount }
+        
+    >>> Fail
+    
+        return HTTP 204    
+        return HTTP 500, { success: false, message: "DB에러" }
 
 #### 별 충전
 > /star/plus
@@ -438,7 +452,7 @@
         return HTTP 500, { success: false, message: "DB에러" }
         
 
-### Find (유저 정보 조회) <span id="find"></span>
+### User (유저 정보 조회) <span id="user"></span>
 > /user/find
 >> Requiring Params
 
@@ -475,24 +489,58 @@
     >>> Success
     
         return HTTP 200, UserList Scheme
-        {
-            email: "email" (String)
-            id: "id" (String),
-            nickname": "nickname" (String),
-            sex: "sex" (String),
-            age: "age" (String),
-            region: "region" (String),
-            introduce: "introduce" (String),
-            profile: "profile" (String),
-            star: "star" (unsigned int),
-            signdate: "signdate" (datetime)
-        }
+        [
+            {
+                email: "email" (String)
+                id: "id" (String),
+                nickname": "nickname" (String),
+                sex: "sex" (String),
+                age: "age" (String),
+                region: "region" (String),
+                introduce: "introduce" (String),
+                profile: "profile" (String),
+                star: "star" (unsigned int),
+                signdate: "signdate" (datetime)
+            },
+            {
+                ...
+            }
+        ]
         
     >>> Fail
     
         return HTTP 204,
         return HTTP 500, { success: false, message: "DB에러" }
+        
+        
+### Notice (공지사항)
 
+#### 공지사항 조회
+> /noti/list
+>> Requiring Params
+
+    No Param
+    
+>> Return Value
+
+    >>> Success 
+    
+        return HTTP 200, NoticeList Scheme 
+        [
+            {
+                title: "noticeTitle",
+                contents: "noticeContents"
+            },
+            {
+                ...
+            }
+        ]
+        
+    >>> Fail
+    
+        return HTTP 204,
+        return HTTP 500, { success: false, message: "DB에러" }
+        
              
 ### TOS & PP (서비스 이용약관, 개인정보처리방침) <span id="tospp"></span>
 * 파싱용 페이지
