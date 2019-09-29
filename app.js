@@ -56,10 +56,11 @@ app.use((req, res, next) => {
     next();
 }); 
 */ // Custom Middleware
+/*
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/html/test.html"));
 });
-
+*/
 app.get("/privacypolicy", (req, res) => {
     res.sendFile(path.join(__dirname, "static/html/etc/privacypolicy.html"));
 });
