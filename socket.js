@@ -58,6 +58,12 @@ module.exports = (io) => {
             delete online_users_data[data.email];
             delete socket_ids[data.email];
 
+            if (on_chat_users_list.indexOf(data.email) != -1) {
+                delete on_chat_users_list.splice(on_chat_users_list.indexOf(data.email), 1);
+                console.log("=== on_chat_users_list ===");
+                console.log(on_chat_users_list);
+            }
+
             console.log("=== online_users_list ===");
             console.log(online_users_list);
             console.log("=== online_users_data ===");
